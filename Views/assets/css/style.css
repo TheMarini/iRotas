@@ -1,0 +1,71 @@
+﻿/*----------NORMATIZAÇÃO------------*/
+
+* {
+    margin: 0;
+    padding: 0;
+    border: none;
+    list-style: none;
+}
+
+a {
+    text-decoration: none !important;
+    color: inherit
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: whitesmoke;
+}
+
+::selection {
+    color: whitesmoke;
+    background-color: black
+}
+
+input,
+textarea {
+    font-size: 1.3em
+}
+
+input {
+    text-align: center;
+}
+
+textarea {
+    resize: none;
+}
+
+button,
+input[type="submit"] {
+    cursor: pointer
+}
+
+
+/*----------CLASSES GLOBAIS------------*/
+
+._center-child {
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    justify-content: center
+}
+
+/*----------NAV------------*/
+main{
+    box-sizing: border-box;
+    padding: 20px 0;
+}
+
+.brand-logo{
+    margin-left: 12px
+}
+
+table{
+    background-color: white;
+    padding: 30px;
+    border-radius: 5px
+}
+
+.search{
+    box-shadow: none !important;
+}
