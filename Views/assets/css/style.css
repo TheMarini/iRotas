@@ -69,3 +69,30 @@ table{
 .search{
     box-shadow: none !important;
 }
+
+.opt{
+    opacity: 0;
+    transition: 0.4s
+}
+
+tr:hover .opt{
+    opacity: 1
+}
+
+.modal#delete .modal-content p{
+    font-size: 1.5rem;
+    text-align: center
+}
+
+.modal#delete .modal-content p span{
+    background-color: indianred;
+    color: white;
+    padding: 4px;
+    transition: 0.4s opacity;
+    animation: twink 1s infinite alternate;
+}
+
+@keyframes twink {
+    0% {opacity: 0.4}
+    100% {opacity: 1}
+}

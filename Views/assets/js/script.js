@@ -2,6 +2,10 @@ $(function () {
     $('.fixed-action-btn').floatingActionButton();
     $('.tooltipped').tooltip();
     $('.sidenav').sidenav();
+    $('.modal').modal();
+    $('select').formSelect();
+    $('.dropdown-trigger').dropdown();
+
     
     //Nav items .click()
     $('body > nav').on('click', '.nav-item', function () {
@@ -34,6 +38,6 @@ $(function () {
         })
     });
     
-    //Auto Load Maquinas
-    $("body > nav a[href='motoristas']")[0].click();
+    //Auto Load
+    $("body > nav a[href='rotas']")[0].click();
 });
