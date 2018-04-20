@@ -15,7 +15,7 @@
     else:
 ?>
 
-<h3 class="text-muted center">Não há nenhuma máquina cadastrada :(</h3>
+<h3 class="text-muted center">Não há nenhum carro cadastrado :(</h3>
 
 <?php
     endif;
