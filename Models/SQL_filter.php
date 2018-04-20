@@ -5,7 +5,7 @@
     //Set table
     switch($tab){
         case 0:
-            $tabela = 'rota';
+            $tabela = 'destino';
             break;
 
         case 1:
