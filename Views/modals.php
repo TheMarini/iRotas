@@ -3,7 +3,7 @@
 <!-- ADD -->
 <div id="add" class="modal modal-fixed-footer">
     <div class="modal-content">
-        <h4>Adicionar Motorista</h4>
+        <h4>Adicionar <?php echo $tabela; ?></h4>
         <form>
             <div class="row">
                 <div class="input-field col s12">
@@ -38,7 +38,7 @@
 <!-- EDIT -->
 <div id="edit" class="modal modal-fixed-footer">
     <div class="modal-content">
-        <h4>Editar Motorista</h4>
+        <h4>Editar <?php echo $tabela; ?></h4>
         <form>
             <div class="row">
                 <div class="input-field col s12">
@@ -73,7 +73,7 @@
 <!-- DELETE -->
 <div id="delete" class="modal bottom-sheet">
     <div class="modal-content">
-        <p>Tem certeza que deseja <span>deletar</span> esse motorista?</p>
+        <p>Tem certeza que deseja <span>deletar</span> esse <?php echo $tabela; ?>?</p>
     </div>
     <div class="modal-footer">
         <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat left">Cancelar</a>
@@ -82,3 +82,5 @@
         </button>
     </div>
 </div>
+
+<script>$('.modal').modal();</script>

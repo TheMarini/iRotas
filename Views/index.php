@@ -47,9 +47,6 @@
             <i class="large material-icons">add</i>
         </a>
     </div>
-
-    <!-- Modals -->
-    <?php include('modals.php'); ?>
 </body>
 
 </html>

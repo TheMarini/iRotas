@@ -2,7 +2,6 @@ $(function () {
     $('.fixed-action-btn').floatingActionButton();
     $('.tooltipped').tooltip();
     $('.sidenav').sidenav();
-    $('.modal').modal();
     $('select').formSelect();
     $('.dropdown-trigger').dropdown();
 
