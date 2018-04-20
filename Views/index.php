@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <title>TCS</title>
 
+    <link rel="icon" href="./Views/assets/img/icon.png">
+
     <!-- ViewPort -->
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
