@@ -6,7 +6,6 @@ $(function () {
     $('select').formSelect();
     $('.dropdown-trigger').dropdown();
 
-    
     //Nav items .click()
     $('body > nav').on('click', '.nav-item', function () {
         //Prevent Default
@@ -22,11 +21,17 @@ $(function () {
         //Active this
         $(this).toggleClass('active');
 
+        $tab = $('.nav-item.active').index();
+
         //AJAX
         $.ajax({
             url: $(this).children('a').attr('href'),
             type: "GET",
             dataType: 'html',
+            data: ({
+                tab: $tab,
+                SQL_type: null
+            }),
             success: function (data) {
                 $('main').fadeTo('fast', 0, function () {
                     $('main').html(data);
@@ -39,5 +44,5 @@ $(function () {
     });
     
     //Auto Load
-    $("body > nav a[href='rotas']")[0].click();
+    $("body > nav a[href='carros']")[0].click();
 });
