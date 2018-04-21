@@ -24,7 +24,7 @@ $(function () {
 
         //AJAX
         $.ajax({
-            url: $(this).children('a').attr('href'),
+            url: 'router',
             type: "GET",
             dataType: 'html',
             data: ({

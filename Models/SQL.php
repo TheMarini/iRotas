@@ -1,35 +1,15 @@
 <?php
-    //Auto method
-    $method = '_' . $_SERVER['REQUEST_METHOD'];
-
     //Requires
     require('SQL_config.php');
     require('SQL_filter.php');
 
+    //Select result
+    $result;
+
     //SELECT | INSERT | UPDATE | DELETE
     switch ($$method['SQL_type']){
-        case null:
-            $result = $MySQL->query($select . $where);
-            if($result->num_rows > 0) {
-                include('Views/search.php');
-                include('Views/tabela.php');
-            }
-            else{
-                $artigo;
-                switch($tab){
-                    case 0:
-                        $artigo = ['a', 'a'];
-                        break;
-
-                    case 1:
-                    case 2:
-                        $artigo = ['', 'o'];
-                        break;
-                }
-
-                echo '<h3 class="text-muted center">' . "Não há nenhum$artigo[0] $tabela cadastrad$artigo[1] :( </h3>";
-            }
-        break;
+        case null: $result = $MySQL->query($select . $where);
+            break;
 
         case 'addModal':
             if ($tab == 0){
@@ -68,6 +48,4 @@
         $result = $GLOBALS['MySQL']->query('SELECT * FROM ' . $GLOBALS['tabela'] . $GLOBALS['where']);
         include('../views/table.php');
     }
-
-    $MySQL->close();
 ?>

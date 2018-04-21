@@ -1,7 +1,6 @@
 <?php
-    $tab = $$method['tab']; //Get current tab
-    $where = ' '; //Set where
     $select;
+    $where = ' '; //Set where
 
     //Set table
     switch($tab){
