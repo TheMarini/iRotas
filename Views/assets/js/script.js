@@ -1,4 +1,8 @@
 $(function () {
+    //GLOBAL Vars
+    var tab;
+
+    //Materialize Inits
     $('.fixed-action-btn').floatingActionButton();
     $('.tooltipped').tooltip();
     $('.sidenav').sidenav();
@@ -20,7 +24,7 @@ $(function () {
         //Active this
         $(this).toggleClass('active');
 
-        //Get current tab
+        //Set current tab
         tab = $('.nav-item.active').index();
 
         //AJAX
@@ -49,9 +53,6 @@ $(function () {
     //Modals confirm button
     $('body').on('click', '.modal-footer button', function () {
 
-        //Get current tab
-        tab = $('.nav-item.active').index();
-
         //Get Modal
         modal = $(this).parent().parent().attr('id');
 
@@ -61,17 +62,37 @@ $(function () {
             SQL_type: modal
         };
 
-        //New datas
+        //Switch parameters
+        switch(tab){
+            case 0:
+                par = ['UUID', 'nome', 'num_pecas', 'num_pessoas', 'tempo_estimado'];
+                break;
+            case 1:
+                par = ['placa', 'modelo'];
+                break;
+            case 2:
+                par = ['CPF', 'nome'];
+                break;
+        }
+
+        //Custom datas
         switch (modal) {
             case 'add':
-            case 'edit':
-                data['CPF'] = $('#' + modal + ' input[name="CPF"]').val();
-                data['nome'] = $('#' + modal + ' input[name="nome"]').val();
-                message = (modal == 'add') ? 'Adiconado': 'Editado';
+                data[par[0]] = $('#' + modal + ' input[name="' + par[0] + '"]').val();
+                data[par[1]] = $('#' + modal + ' input[name="' + par[1] + '"]').val();
+                message = 'Adicionado';
                 break;
+
+            case 'edit':
+                data['old_' + par[0]] = tabela(0);
+                data['new_' + par[0]] = $('#' + modal + ' input[name="' + par[0] + '"]').val();
+                data[par[1]] = $('#' + modal + ' input[name="' + par[1] + '"]').val();
+                message = 'Editado';
+                break;
+
             case 'delete':
-                data['CPF'] = tabela(0);
-                message = 'Deletado'
+                data[par[0]] = tabela(0);
+                message = 'Deletado';
                 break;
         }
 
@@ -82,14 +103,13 @@ $(function () {
             dataType: 'html',
             data: (data),
             success: function (data) {
-                $("body > nav a[href='motoristas']")[0].click();
+                $('.nav-item.active a').click();
+                M.toast({html: message + ' com sucesso!', classes: 'rounded'});
             },
             error: function (event) {
-                console.log(event);
+                M.toast({html: 'Algo deu errado :('});
             }
         })
-
-        M.toast({html: message + ' com sucesso!', classes: 'rounded'});
     });
 
     //Get current row (dots clicked)
@@ -108,7 +128,25 @@ $(function () {
 
     //Edit modal default valors on open
     $('body').on('click', '.modal-trigger[href="#edit"]', function () {
-        $('#edit.modal input[name="CPF"]').val(tabela(0));
-        $('#edit.modal input[name="nome"]').val(tabela(1));
+        switch(tab){
+            case 0:
+                $('#edit.modal input[name="destino"]').val(tabela(0));
+                $('#edit.modal input[name="num_pecas"]').val(tabela(3));
+                $('#edit.modal input[name="num_pessoas"]').val(tabela(4));
+                $('#edit.modal input[name="tempo_estimado"]').val(tabela(5));
+                break;
+
+            case 1:
+                $('#edit.modal input[name="placa"]').val(tabela(0));
+                $('#edit.modal input[name="modelo"]').val(tabela(1));
+                break;
+
+            case 2:
+                $('#edit.modal input[name="CPF"]').val(tabela(0));
+                $('#edit.modal input[name="nome"]').val(tabela(1));
+                break;
+        }
     });
+
+    M.updateTextFields();
 });
