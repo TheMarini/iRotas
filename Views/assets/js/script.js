@@ -64,13 +64,14 @@ $(function () {
         //New datas
         switch (modal) {
             case 'add':
-                data['CPF'] = $('#' + modal + ' .CPF').val();
-                data['nome'] = $('#' + modal + ' .nome_motorista').val();
-                break;
             case 'edit':
+                data['CPF'] = $('#' + modal + ' input[name="CPF"]').val();
+                data['nome'] = $('#' + modal + ' input[name="nome"]').val();
+                message = (modal == 'add') ? 'Adiconado': 'Editado';
                 break;
             case 'delete':
                 data['CPF'] = tabela(0);
+                message = 'Deletado'
                 break;
         }
 
@@ -87,6 +88,8 @@ $(function () {
                 console.log(event);
             }
         })
+
+        M.toast({html: message + ' com sucesso!', classes: 'rounded'});
     });
 
     //Get current row (dots clicked)
@@ -102,4 +105,10 @@ $(function () {
 
     //Debug input labels
     M.updateTextFields();
+
+    //Edit modal default valors on open
+    $('body').on('click', '.modal-trigger[href="#edit"]', function () {
+        $('#edit.modal input[name="CPF"]').val(tabela(0));
+        $('#edit.modal input[name="nome"]').val(tabela(1));
+    });
 });
