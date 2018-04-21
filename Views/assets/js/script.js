@@ -107,6 +107,7 @@ $(function () {
             success: function (data) {
                 $('.nav-item.active a').click();
                 M.toast({html: message + ' com sucesso!', classes: 'rounded'});
+
             },
             error: function (event) {
                 M.toast({html: 'Algo deu errado :('});
