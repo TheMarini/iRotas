@@ -15,8 +15,9 @@
             $MySQL->query('INSERT INTO '.$tabela.' VALUES ("'.$$method['CPF'].'", "'.$$method['nome'].'")');
         break;
 
-        case 'editModal':
-            $MySQL->query('UPDATE ' . $tabela . ' SET nome = "'. $_POST['Nome'] . '" WHERE id = ' . $_POST['ID']);
+        case 'edit':
+            $MySQL->query('UPDATE ' . $tabela . ' SET CPF = "'. $$method['CPF'] . '", nome = "'.$$method['nome'].'" WHERE CPF = "' . $$method['CPF'].'"');
+            //echo 'UPDATE ' . $tabela . ' SET CPF = "'. $$method['CPF'] . '", nome = "'.$$method['nome'].'" WHERE CPF = "' . $$method['CPF'].'"';
         break;
 
         case 'delete':
