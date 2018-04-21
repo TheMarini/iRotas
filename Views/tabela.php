@@ -9,6 +9,7 @@
                 <th>Carro</th>
                 <th>Nº de Peças</th>
                 <th>Nº de Pessoas</th>
+                <th>Tempo Estimado</th>
                 
             <!-- Carros -->
             <?php break; case 1:?>
@@ -33,11 +34,12 @@
         <?php switch($tab): case 0: ?>
             <?php while($row = $result->fetch_assoc()) : ?>
                 <tr>
-                    <td><?php echo $row['nome']; ?></td>
-                    <td>Paulo Costa</td>
-                    <td>HEX 0049</td>
+                    <td><?php echo $row['destino']; ?></td>
+                    <td><?php echo $row['motorista']; ?></td>
+                    <td><?php echo $row['placa']; ?></td>
                     <td><?php echo $row['num_pecas']; ?></td>
                     <td><?php echo $row['num_pessoas']; ?></td>
+                    <td><?php echo $row['tempo_estimado']; ?></td>
                     <td><a class="opt dropdown-trigger" data-target='options' href="#options"><i class="material-icons">more_horiz</i></a></td>
                 </tr>
             <?php endwhile; ?>
@@ -48,8 +50,8 @@
             <tr>
                 <td><?php echo $row['placa']; ?></td>
                 <td><?php echo $row['modelo']; ?></td>
-                <td>Paulo Costa</td>
-                <td>Garagem</td>
+                <td><?php echo ($row['nome'] != null) ? $row['nome'] : '-'; ?></td>
+                <td>-</td>
                 <td><a class="opt dropdown-trigger" data-target='options' href="#options"><i class="material-icons">more_horiz</i></a></td>
             </tr>
             <? endwhile; ?>
@@ -60,7 +62,7 @@
             <tr>            
                 <td><?php echo $row['CPF']; ?></td>
                 <td><?php echo $row['nome']; ?></td>
-                <td>HEX 0049</td>
+                <td><?php echo ($row['placa'] != null) ? $row['placa'] : '-'; ?></td>
                 <td><a class="opt dropdown-trigger" data-target='options' href="#options"><i class="material-icons">more_horiz</i></a></td>
             </tr>
             <?php endwhile; ?>

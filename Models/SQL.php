@@ -9,8 +9,7 @@
     //SELECT | INSERT | UPDATE | DELETE
     switch ($$method['SQL_type']){
         case null:
-            $result = $MySQL->query('SELECT * FROM ' . $tabela . $where);
-
+            $result = $MySQL->query($select . $where);
             if($result->num_rows > 0) {
                 include('Views/search.php');
                 include('Views/tabela.php');
