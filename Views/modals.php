@@ -54,7 +54,7 @@
                         <label>Tempo Estimado</label>
                     </div>
                 </div>
-            <?php break; case 1: ?>
+            <?php break; case 2: ?>
                 <div class="row">
                     <div class="input-field col s12">
                         <i class="material-icons prefix">dvr</i>
@@ -78,7 +78,7 @@
                         <label>Atribuir ao motorista</label>
                     </div>
                 </div>
-            <?php break; case 2: ?>
+            <?php break; case 3: ?>
                 <div class="row">
                     <div class="input-field col s12">
                         <i class="material-icons prefix">person</i>

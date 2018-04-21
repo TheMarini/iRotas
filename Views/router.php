@@ -23,8 +23,8 @@
                     $artigo = ['a', 'a'];
                     break;
 
-                case 1:
                 case 2:
+                case 3:
                     $artigo = ['', 'o'];
                     break;
             }

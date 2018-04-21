@@ -5,10 +5,10 @@
         case 0: 
             $title = 'Rotas';
             break;
-        case 1: 
+        case 2:
             $title = 'Carros';
             break;
-        case 2: 
+        case 3:
             $title = 'Motoristas';
             break;
     }
@@ -51,7 +51,7 @@
                             <label>Tempo Estimado</label>
                         </div>
                     <!-- Carros -->
-                    <?php break; case 1: ?>
+                    <?php break; case 2: ?>
                         <div class="input-field col s6">
                             <i class="material-icons prefix">dvr</i>
                             <input id="icon_prefix" type="number" class="validate" placeholder="Placa">
@@ -76,7 +76,7 @@
                         </div>
                         
                     <!-- Motoristas -->
-                    <?php break; case 2: ?>
+                    <?php break; case 3: ?>
                         <div class="input-field col s12">
                             <i class="material-icons prefix">person</i>
                             <input id="icon_prefix" type="text" class="validate" placeholder="Nome">

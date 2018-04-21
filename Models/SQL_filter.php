@@ -13,7 +13,7 @@
                 Join carro C on C.placa = MC.placa_carro ';
             break;
 
-        case 1:
+        case 2:
             $tabela = 'carro';
             $select = '
             SELECT C.*, M.nome FROM carro C
@@ -21,7 +21,7 @@
                 Join motorista M on M.CPF = MC.CPF_motorista ';
             break;
 
-        case 2:
+        case 3:
             $tabela = 'motorista';
             $select = 'SELECT M.*, C.placa FROM motorista M
                 Left outer Join motorista_carro MC on MC.CPF_motorista = M.CPF

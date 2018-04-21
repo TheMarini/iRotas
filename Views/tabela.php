@@ -10,16 +10,16 @@
                 <th>Nº de Peças</th>
                 <th>Nº de Pessoas</th>
                 <th>Tempo Estimado</th>
-                
+
             <!-- Carros -->
-            <?php break; case 1:?>
+            <?php break; case 2:?>
                 <th>Placa</th>
                 <th>Modelo</th>
                 <th>Motorista Associado</th>
                 <th>Status</th>
                 
             <!-- Motoristas -->
-            <?php break; case 2:?>
+            <?php break; case 3:?>
                 <th>CPF</th>
                 <th>Nome</th>
                 <th>Carro Associado</th>
@@ -45,7 +45,7 @@
             <?php endwhile; ?>
 
         <!-- Carros -->
-        <?php break; case 1:?>
+        <?php break; case 2:?>
             <?php while($row = $result->fetch_assoc()) : ?>
             <tr>
                 <td><?php echo $row['placa']; ?></td>
@@ -57,7 +57,7 @@
             <? endwhile; ?>
 
         <!-- Motoristas -->
-        <?php break; case 2:?>
+        <?php break; case 3:?>
             <?php while($row = $result->fetch_assoc()) : ?>
             <tr>            
                 <td><?php echo $row['CPF']; ?></td>

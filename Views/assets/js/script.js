@@ -64,13 +64,13 @@ $(function () {
 
         //Switch parameters
         switch(tab){
-            case 0:
+            case 1:
                 par = ['UUID', 'nome', 'num_pecas', 'num_pessoas', 'tempo_estimado'];
                 break;
-            case 1:
+            case 2:
                 par = ['placa', 'modelo', 'motorista'];
                 break;
-            case 2:
+            case 3:
                 par = ['CPF', 'nome', 'carro'];
                 break;
         }
@@ -139,12 +139,12 @@ $(function () {
                 $('#edit.modal input[name="tempo_estimado"]').val(tabela(5));
                 break;
 
-            case 1:
+            case 2:
                 $('#edit.modal input[name="placa"]').val(tabela(0));
                 $('#edit.modal input[name="modelo"]').val(tabela(1));
                 break;
 
-            case 2:
+            case 3:
                 $('#edit.modal input[name="CPF"]').val(tabela(0));
                 $('#edit.modal input[name="nome"]').val(tabela(1));
                 $('#edit.modal select[name="carro"]').val(tabela(2));
