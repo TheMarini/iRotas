@@ -93,7 +93,7 @@
                     <div class="input-field col s6">
                         <i class="material-icons prefix">directions_car</i>
                         <select name="carro">
-                            <option value="" selected>-</option>
+                            <option value="">-</option>
                             <?php $result = $MySQL->query('SELECT placa from carro'); ?>
                             <?php while($row = $result->fetch_assoc()) : ?>
                                 <option value="<?php echo $row['placa']; ?>"><?php echo $row['placa']; ?></option>

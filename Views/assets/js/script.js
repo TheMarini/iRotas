@@ -68,10 +68,10 @@ $(function () {
                 par = ['UUID', 'nome', 'num_pecas', 'num_pessoas', 'tempo_estimado'];
                 break;
             case 1:
-                par = ['placa', 'modelo'];
+                par = ['placa', 'modelo', 'motorista'];
                 break;
             case 2:
-                par = ['CPF', 'nome'];
+                par = ['CPF', 'nome', 'carro'];
                 break;
         }
 
@@ -80,6 +80,7 @@ $(function () {
             case 'add':
                 data[par[0]] = $('#' + modal + ' input[name="' + par[0] + '"]').val();
                 data[par[1]] = $('#' + modal + ' input[name="' + par[1] + '"]').val();
+                data[par[2]] = $('#' + modal + ' select[name="'+ par[2] +'"]').val();
                 message = 'Adicionado';
                 break;
 
@@ -87,6 +88,7 @@ $(function () {
                 data['old_' + par[0]] = tabela(0);
                 data['new_' + par[0]] = $('#' + modal + ' input[name="' + par[0] + '"]').val();
                 data[par[1]] = $('#' + modal + ' input[name="' + par[1] + '"]').val();
+                data[par[2]] = $('#' + modal + ' select[name="'+ par[2] +'"]').val();
                 message = 'Editado';
                 break;
 
@@ -144,6 +146,7 @@ $(function () {
             case 2:
                 $('#edit.modal input[name="CPF"]').val(tabela(0));
                 $('#edit.modal input[name="nome"]').val(tabela(1));
+                $('#edit.modal select[name="carro"]').val(tabela(2));
                 break;
         }
     });
