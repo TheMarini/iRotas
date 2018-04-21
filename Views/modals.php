@@ -42,6 +42,11 @@
                         <input id="icon_prefix" type="number" class="validate">
                         <label>Nº de Pessoas</label>
                     </div>
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">av_timer</i>
+                        <input id="icon_prefix" type="text" class="timepicker">
+                        <label>Tempo Estimado</label>
+                    </div>
                 </div>
             <?php break; case 1: ?>
                 <div class="row">
@@ -70,12 +75,12 @@
                 <div class="row">
                     <div class="input-field col s12">
                         <i class="material-icons prefix">person</i>
-                        <input id="icon_prefix" type="text" class="validate">
+                        <input type="text" class="validate nome_motorista" data-length="30" max="30" required>
                         <label>Nome</label>
                     </div>
                     <div class="input-field col s6">
                         <i class="material-icons prefix">confirmation_number</i>
-                        <input id="icon_prefix" type="number" class="validate">
+                        <input type="text" class="validate CPF" data-length="15" max="15" required>
                         <label>CPF</label>
                     </div>
                     <div class="input-field col s6">
@@ -94,7 +99,7 @@
     </div>
     <div class="modal-footer">
         <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat left">Cancelar</a>
-        <button class="modal-action modal-close btn waves-effect waves-light" type="submit" name="action">Adicionar
+        <button class="modal-action modal-close btn waves-effect waves-light" type="submit">Adicionar
             <i class="material-icons right">add</i>
         </button>
     </div>
@@ -172,12 +177,12 @@
                 <div class="row">
                     <div class="input-field col s12">
                         <i class="material-icons prefix">person</i>
-                        <input id="icon_prefix" type="text" class="validate">
+                        <input id="icon_prefix" type="text" class="validate" required>
                         <label>Nome</label>
                     </div>
                     <div class="input-field col s6">
                         <i class="material-icons prefix">confirmation_number</i>
-                        <input id="icon_prefix" type="number" class="validate">
+                        <input id="icon_prefix" type="number" class="validate" required>
                         <label>CPF</label>
                     </div>
                     <div class="input-field col s6">
@@ -216,4 +221,4 @@
     </div>
 </div>
 
-<script>$('.modal').modal();</script>
+<script>$('.modal').modal(); $('.timepicker').timepicker({twelvehour: false}); $('input[data-length]').characterCounter(); M.updateTextFields();</script>
