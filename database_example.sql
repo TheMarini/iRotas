@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: 20-Abr-2018 às 16:24
+-- Generation Time: 21-Abr-2018 às 22:57
 -- Versão do servidor: 5.6.34-log
 -- PHP Version: 7.1.5
 
@@ -38,6 +38,7 @@ CREATE TABLE `carro` (
 --
 
 INSERT INTO `carro` (`placa`, `modelo`) VALUES
+('783-UFA', 'Modelo de Carro'),
 ('ABC-1234', 'Honda Civic'),
 ('HJS-9289', 'Corsa'),
 ('IUS-1923', 'Philton RED'),
@@ -82,7 +83,9 @@ CREATE TABLE `motorista` (
 
 INSERT INTO `motorista` (`CPF`, `nome`) VALUES
 ('452.073.163-84', 'Roberto Alves'),
-('587.918.982-74', 'Carlos Souza');
+('529.182.291-90', 'Ana Maria'),
+('587.918.982-74', 'Carlos Souza'),
+('673.372.894-03', 'Vanessa da Silva');
 
 -- --------------------------------------------------------
 
@@ -91,7 +94,6 @@ INSERT INTO `motorista` (`CPF`, `nome`) VALUES
 --
 
 CREATE TABLE `motorista_carro` (
-  `id` int(11) NOT NULL,
   `CPF_motorista` varchar(15) NOT NULL,
   `placa_carro` varchar(10) NOT NULL,
   `destino` varchar(36) DEFAULT NULL
@@ -101,9 +103,10 @@ CREATE TABLE `motorista_carro` (
 -- Extraindo dados da tabela `motorista_carro`
 --
 
-INSERT INTO `motorista_carro` (`id`, `CPF_motorista`, `placa_carro`, `destino`) VALUES
-(1, '452.073.163-84', 'ABC-1234', '25769c6c-d34d-4bfe-ba98-e0ee856f3e7a'),
-(2, '587.918.982-74', 'IUS-1923', 'c4a760a8-dbcf-5254-a0d9-6a4474bd1b62');
+INSERT INTO `motorista_carro` (`CPF_motorista`, `placa_carro`, `destino`) VALUES
+('529.182.291-90', 'KLI-2891', NULL),
+('452.073.163-84', 'ABC-1234', '25769c6c-d34d-4bfe-ba98-e0ee856f3e7a'),
+('587.918.982-74', 'IUS-1923', 'c4a760a8-dbcf-5254-a0d9-6a4474bd1b62');
 
 --
 -- Indexes for dumped tables
@@ -131,20 +134,11 @@ ALTER TABLE `motorista`
 -- Indexes for table `motorista_carro`
 --
 ALTER TABLE `motorista_carro`
-  ADD PRIMARY KEY (`id`),
+  ADD PRIMARY KEY (`CPF_motorista`,`placa_carro`),
   ADD KEY `CPF_motorista` (`CPF_motorista`),
   ADD KEY `placa_carro` (`placa_carro`),
   ADD KEY `destino` (`destino`);
 
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `motorista_carro`
---
-ALTER TABLE `motorista_carro`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- Constraints for dumped tables
 --

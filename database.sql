@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: 20-Abr-2018 às 15:23
+-- Generation Time: 21-Abr-2018 às 22:57
 -- Versão do servidor: 5.6.34-log
 -- PHP Version: 7.1.5
 
@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `carro` (
-  `placa` int(10) NOT NULL,
+  `placa` varchar(10) NOT NULL,
   `modelo` varchar(30) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -54,7 +54,7 @@ CREATE TABLE `destino` (
 --
 
 CREATE TABLE `motorista` (
-  `CPF` int(15) NOT NULL,
+  `CPF` varchar(15) NOT NULL,
   `nome` varchar(30) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -65,9 +65,8 @@ CREATE TABLE `motorista` (
 --
 
 CREATE TABLE `motorista_carro` (
-  `id` int(11) NOT NULL,
-  `CPF_motorista` int(15) NOT NULL,
-  `placa_carro` int(10) NOT NULL,
+  `CPF_motorista` varchar(15) NOT NULL,
+  `placa_carro` varchar(10) NOT NULL,
   `destino` varchar(36) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -97,20 +96,11 @@ ALTER TABLE `motorista`
 -- Indexes for table `motorista_carro`
 --
 ALTER TABLE `motorista_carro`
-  ADD PRIMARY KEY (`id`),
+  ADD PRIMARY KEY (`CPF_motorista`,`placa_carro`),
   ADD KEY `CPF_motorista` (`CPF_motorista`),
   ADD KEY `placa_carro` (`placa_carro`),
   ADD KEY `destino` (`destino`);
 
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `motorista_carro`
---
-ALTER TABLE `motorista_carro`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- Constraints for dumped tables
 --
@@ -119,9 +109,9 @@ ALTER TABLE `motorista_carro`
 -- Limitadores para a tabela `motorista_carro`
 --
 ALTER TABLE `motorista_carro`
-  ADD CONSTRAINT `motorista_carro_ibfk_1` FOREIGN KEY (`CPF_motorista`) REFERENCES `motorista` (`CPF`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `motorista_carro_ibfk_2` FOREIGN KEY (`placa_carro`) REFERENCES `carro` (`placa`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `motorista_carro_ibfk_3` FOREIGN KEY (`destino`) REFERENCES `destino` (`UUID`) ON DELETE SET NULL ON UPDATE CASCADE;
+  ADD CONSTRAINT `motorista_carro_ibfk_3` FOREIGN KEY (`destino`) REFERENCES `destino` (`UUID`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `motorista_carro_ibfk_4` FOREIGN KEY (`CPF_motorista`) REFERENCES `motorista` (`CPF`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `motorista_carro_ibfk_5` FOREIGN KEY (`placa_carro`) REFERENCES `carro` (`placa`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
