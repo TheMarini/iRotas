@@ -19,20 +19,22 @@
                     <div class="input-field col s6">
                         <i class="material-icons prefix">person</i>
                         <select name="motorista">
-                          <option value="" selected>Nenhum</option>
-                          <option value="1">Option 1</option>
-                          <option value="2">Option 2</option>
-                          <option value="3">Option 3</option>
+                            <option value="" selected>-</option>
+                            <?php $result = $MySQL->query('SELECT nome from motorista'); ?>
+                            <?php while($row = $result->fetch_assoc()) : ?>
+                                <option value="<?php echo $row['nome']; ?>"><?php echo $row['nome']; ?></option>
+                            <?php endwhile; ?>
                         </select>
                         <label>Motorista</label>
                     </div>
                     <div class="input-field col s6">
                         <i class="material-icons prefix">directions_car</i>
                         <select name="carro">
-                          <option value="" selected>Nenhum</option>
-                          <option value="1">Option 1</option>
-                          <option value="2">Option 2</option>
-                          <option value="3">Option 3</option>
+                            <option value="" selected>-</option>
+                            <?php $result = $MySQL->query('SELECT placa from carro'); ?>
+                            <?php while($row = $result->fetch_assoc()) : ?>
+                                <option value="<?php echo $row['placa']; ?>"><?php echo $row['placa']; ?></option>
+                            <?php endwhile; ?>
                         </select>
                         <label>Carro</label>
                     </div>
@@ -67,10 +69,11 @@
                     <div class="input-field col s6">
                         <i class="material-icons prefix">person</i>
                         <select name="motorista">
-                          <option value="" selected>Nenhum</option>
-                          <option value="1">Option 1</option>
-                          <option value="2">Option 2</option>
-                          <option value="3">Option 3</option>
+                            <option value="" selected>-</option>
+                            <?php $result = $MySQL->query('SELECT nome from motorista'); ?>
+                            <?php while($row = $result->fetch_assoc()) : ?>
+                                <option value="<?php echo $row['nome']; ?>"><?php echo $row['nome']; ?></option>
+                            <?php endwhile; ?>
                         </select>
                         <label>Atribuir ao motorista</label>
                     </div>
@@ -90,10 +93,11 @@
                     <div class="input-field col s6">
                         <i class="material-icons prefix">directions_car</i>
                         <select name="carro">
-                          <option value="" selected>Nenhum</option>
-                          <option value="1">Option 1</option>
-                          <option value="2">Option 2</option>
-                          <option value="3">Option 3</option>
+                            <option value="" selected>-</option>
+                            <?php $result = $MySQL->query('SELECT placa from carro'); ?>
+                            <?php while($row = $result->fetch_assoc()) : ?>
+                                <option value="<?php echo $row['placa']; ?>"><?php echo $row['placa']; ?></option>
+                            <?php endwhile; ?>
                         </select>
                         <label>Atribuir ao carro</label>
                     </div>
