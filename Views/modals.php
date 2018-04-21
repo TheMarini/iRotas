@@ -20,9 +20,9 @@
                         <i class="material-icons prefix">person</i>
                         <select name="motorista">
                             <option value="" selected>-</option>
-                            <?php $result = $MySQL->query('SELECT nome from motorista'); ?>
+                            <?php $result = $MySQL->query('SELECT CPF, nome from motorista'); ?>
                             <?php while($row = $result->fetch_assoc()) : ?>
-                                <option value="<?php echo $row['nome']; ?>"><?php echo $row['nome']; ?></option>
+                                <option value="<?php echo $row['CPF']; ?>"><?php echo $row['nome']; ?></option>
                             <?php endwhile; ?>
                         </select>
                         <label>Motorista</label>
@@ -70,9 +70,9 @@
                         <i class="material-icons prefix">person</i>
                         <select name="motorista">
                             <option value="" selected>-</option>
-                            <?php $result = $MySQL->query('SELECT nome from motorista'); ?>
+                            <?php $result = $MySQL->query('SELECT CPF, nome from motorista'); ?>
                             <?php while($row = $result->fetch_assoc()) : ?>
-                                <option value="<?php echo $row['nome']; ?>"><?php echo $row['nome']; ?></option>
+                                <option value="<?php echo $row['CPF']; ?>"><?php echo $row['nome']; ?></option>
                             <?php endwhile; ?>
                         </select>
                         <label>Atribuir ao motorista</label>
