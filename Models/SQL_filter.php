@@ -7,10 +7,10 @@
         case 0:
             $tabela = 'destino';
             $select = '
-            SELECT D.nome as "destino", M.nome as "motorista", C.placa, D.num_pecas, D.num_pessoas, D.tempo_estimado FROM motorista_carro MC
-                Join destino D on D.UUID = MC.destino
-                Join motorista M on M.CPF = MC.CPF_motorista
-                Join carro C on C.placa = MC.placa_carro ';
+            SELECT D.nome as "destino", M.nome as "motorista", C.placa, D.num_pecas, D.num_pessoas, D.tempo_estimado FROM destino D
+                LEFT OUTER Join motorista_carro MC on MC.destino = D.UUID
+                LEFT OUTER Join motorista M on M.CPF = MC.CPF_motorista
+                LEFT OUTER Join carro C on C.placa = MC.placa_carro ';
             break;
 
         case 1:
