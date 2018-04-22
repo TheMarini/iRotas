@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>TCS</title>
+    <title>TCS - iRotas</title>
 
     <link rel="icon" href="./Views/assets/img/icon.png">
 
