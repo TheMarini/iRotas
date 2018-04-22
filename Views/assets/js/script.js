@@ -1,6 +1,6 @@
 $(function () {
-    //GLOBAL Vars
-    var tab;
+    //GLOBAL VARS
+    var tab;   //Rotas | Carros | Motoristas
 
     //Materialize Inits
     $('.fixed-action-btn').floatingActionButton();
@@ -136,9 +136,6 @@ $(function () {
         return $(current_row).children('td').eq(col).text();
     }
 
-    //Debug input labels
-    M.updateTextFields();
-
     //Edit modal default valors on open
     $('body').on('click', '.modal-trigger[href="#edit"]', function () {
         switch(tab){
@@ -162,5 +159,6 @@ $(function () {
         }
     });
 
+    //Debug input labels
     M.updateTextFields();
 });
