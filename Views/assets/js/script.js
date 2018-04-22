@@ -1,12 +1,14 @@
 $(function () {
+    //GLOBAL Vars
+    var tab;
+
+    //Materialize Inits
     $('.fixed-action-btn').floatingActionButton();
     $('.tooltipped').tooltip();
     $('.sidenav').sidenav();
-    $('.modal').modal();
     $('select').formSelect();
     $('.dropdown-trigger').dropdown();
 
-    
     //Nav items .click()
     $('body > nav').on('click', '.nav-item', function () {
         //Prevent Default
@@ -22,11 +24,18 @@ $(function () {
         //Active this
         $(this).toggleClass('active');
 
+        //Set current tab
+        tab = $('.nav-item.active').index();
+
         //AJAX
         $.ajax({
-            url: $(this).children('a').attr('href'),
+            url: 'router',
             type: "GET",
             dataType: 'html',
+            data: ({
+                tab: tab,
+                SQL_type: null
+            }),
             success: function (data) {
                 $('main').fadeTo('fast', 0, function () {
                     $('main').html(data);
@@ -37,7 +46,121 @@ $(function () {
             }
         })
     });
-    
+
     //Auto Load
     $("body > nav a[href='rotas']")[0].click();
+
+    //Modals confirm button
+    $('body').on('click', '.modal-footer button', function () {
+
+        //Get Modal
+        modal = $(this).parent().parent().attr('id');
+
+        //Default data
+        data = {
+            tab: tab,
+            SQL_type: modal
+        };
+
+        //Switch parameters
+        switch(tab){
+            case 0:
+                par = ['UUID', 'placa', 'motorista', 'carro','num_pecas', 'num_pessoas', 'tempo_estimado'];
+                break;
+            case 1:
+                par = ['placa', 'modelo', 'motorista'];
+                break;
+            case 2:
+                par = ['CPF', 'nome', 'carro'];
+                break;
+        }
+
+        //Custom datas
+        //TODO: organize | for/while...
+        switch (modal) {
+            case 'add':
+                if(tab == 0){
+                    data[par[1]] = $('#' + modal + ' input[name="' + par[0] + '"]').val();
+                    data[par[2]] = $('#' + modal + ' select[name="'+ par[2] +'"]').val();
+                    data[par[3]] = $('#' + modal + ' select[name="'+ par[3] +'"]').val();
+                    data[par[4]] = $('#' + modal + ' input[name="' + par[4] + '"]').val();
+                    data[par[5]] = $('#' + modal + ' input[name="' + par[5] + '"]').val();
+                    data[par[6]] = $('#' + modal + ' input[name="' + par[6] + '"]').val();
+                }else{  //Others has the same structure
+                    data[par[0]] = $('#' + modal + ' input[name="' + par[0] + '"]').val();
+                    data[par[1]] = $('#' + modal + ' input[name="' + par[1] + '"]').val();
+                    data[par[2]] = $('#' + modal + ' select[name="'+ par[2] +'"]').val();
+                }
+                message = 'Adicionado';
+                break;
+
+            case 'edit':
+                data['old_' + par[0]] = tabela(0);
+                data['new_' + par[0]] = $('#' + modal + ' input[name="' + par[0] + '"]').val();
+                data[par[1]] = $('#' + modal + ' input[name="' + par[1] + '"]').val();
+                data[par[2]] = $('#' + modal + ' select[name="'+ par[2] +'"]').val();
+                message = 'Editado';
+                break;
+
+            case 'delete':
+                data[par[0]] = tabela(0);
+                message = 'Deletado';
+                break;
+        }
+
+        //AJAX
+        $.ajax({
+            url: 'router',
+            type: "POST",
+            dataType: 'html',
+            data: (data),
+            success: function (data) {
+                $('.nav-item.active a').click();
+                M.toast({html: message + ' com sucesso!', classes: 'rounded'});
+
+            },
+            error: function (event) {
+                M.toast({html: 'Algo deu errado :('});
+            }
+        })
+    });
+
+    //Get current row (dots clicked)
+    var current_row;
+    $('body').on('click', '.opt', function () {
+        current_row = $(this).parent().parent();
+    });
+
+    //Get colum data
+    function tabela(col){
+        return $(current_row).children('td').eq(col).text();
+    }
+
+    //Debug input labels
+    M.updateTextFields();
+
+    //Edit modal default valors on open
+    $('body').on('click', '.modal-trigger[href="#edit"]', function () {
+        switch(tab){
+            case 0:
+                $('#edit.modal input[name="destino"]').val(tabela(1));
+                $('#edit.modal input[name="num_pecas"]').val(tabela(4));
+                $('#edit.modal input[name="num_pessoas"]').val(tabela(5));
+                $('#edit.modal input[name="tempo_estimado"]').val(tabela(6));
+                break;
+
+            case 1:
+                $('#edit.modal input[name="placa"]').val(tabela(0));
+                $('#edit.modal input[name="modelo"]').val(tabela(1));
+                break;
+
+            case 2:
+                $('#edit.modal input[name="CPF"]').val(tabela(0));
+                $('#edit.modal input[name="nome"]').val(tabela(1));
+                $('#edit.modal select[name="carro"]').val(tabela(2));
+                break;
+        }
+    });
+
+    M.updateTextFields();
 });

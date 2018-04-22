@@ -1,5 +1,4 @@
 <!-- TODO: Only one switch -->
-
 <table class="highlight centered z-depth-1">
     <thead>
         <tr>
@@ -10,7 +9,7 @@
                 <th>Carro</th>
                 <th>Nº de Peças</th>
                 <th>Nº de Pessoas</th>
-                <th></th>
+                <th>Tempo Estimado</th>
                 
             <!-- Carros -->
             <?php break; case 1:?>
@@ -18,95 +17,59 @@
                 <th>Modelo</th>
                 <th>Motorista Associado</th>
                 <th>Status</th>
-                <th></th>
                 
             <!-- Motoristas -->
             <?php break; case 2:?>
                 <th>CPF</th>
                 <th>Nome</th>
                 <th>Carro Associado</th>
-                <th></th>
             <?php break; endswitch; ?>
+
+            <th></th>
         </tr>
     </thead>
 
     <tbody>
-                
         <!-- Rotas -->
         <?php switch($tab): case 0: ?>
-            <tr>            
-                <td>Pátio Savassi</td>
-                <td>Paulo Costa</td>
-                <td>HEX 0049</td>
-                <td>12</td>
-                <td>3</td>
-                <td><a class="opt dropdown-trigger" data-target='options' href="#options"><i class="material-icons">more_horiz</i></a></td>
-            </tr>
-            <tr>            
-                <td>Pátio Savassi</td>
-                <td>Paulo Costa</td>
-                <td>HEX 0049</td>
-                <td>12</td>
-                <td>3</td>
-                <td><a class="opt dropdown-trigger" data-target='options' href="#options"><i class="material-icons">more_horiz</i></a></td>
-            </tr>
-            <tr>            
-                <td>Pátio Savassi</td>
-                <td>Paulo Costa</td>
-                <td>HEX 0049</td>
-                <td>12</td>
-                <td>3</td>
-                <td><a class="opt dropdown-trigger" data-target='options' href="#options"><i class="material-icons">more_horiz</i></a></td>
-            </tr>
-                
+            <?php while($row = $result->fetch_assoc()) : ?>
+                <tr>
+                    <td hidden><?php echo $row['UUID']; ?></td>
+                    <td><?php echo $row['destino']; ?></td>
+                    <td><?php echo ($row['motorista'] != null) ? $row['motorista'] : '-'; ?></td>
+                    <td><?php echo ($row['placa'] != null) ? $row['placa'] : '-';?></td>
+                    <td><?php echo $row['num_pecas']; ?></td>
+                    <td><?php echo $row['num_pessoas']; ?></td>
+                    <td><?php echo $row['tempo_estimado']; ?></td>
+                    <td><a class="opt dropdown-trigger" data-target='options' href="#options"><i class="material-icons">more_horiz</i></a></td>
+                </tr>
+            <?php endwhile; ?>
+
         <!-- Carros -->
         <?php break; case 1:?>
+            <?php while($row = $result->fetch_assoc()) : ?>
             <tr>
-                <td>HEX 0049</td>
-                <td>Corsa Unix 2.0</td>
-                <td>Paulo Costa</td>
-                <td>Garagem</td>
+                <td><?php echo $row['placa']; ?></td>
+                <td><?php echo $row['modelo']; ?></td>
+                <td><?php echo ($row['nome'] != null) ? $row['nome'] : '-'; ?></td>
+                <td>-</td>
                 <td><a class="opt dropdown-trigger" data-target='options' href="#options"><i class="material-icons">more_horiz</i></a></td>
             </tr>
-            <tr>
-                <td>HEX 0049</td>
-                <td>Corsa Unix 2.0</td>
-                <td>Paulo Costa</td>
-                <td>Garagem</td>
-                <td><a class="opt dropdown-trigger" data-target='options' href="#options"><i class="material-icons">more_horiz</i></a></td>
-            </tr>
-            <tr>
-                <td>HEX 0049</td>
-                <td>Corsa Unix 2.0</td>
-                <td>Paulo Costa</td>
-                <td>Garagem</td>
-                <td><a class="opt dropdown-trigger" data-target='options' href="#options"><i class="material-icons">more_horiz</i></a></td>
-            </tr>
-                
+            <? endwhile; ?>
+
         <!-- Motoristas -->
         <?php break; case 2:?>
+            <?php while($row = $result->fetch_assoc()) : ?>
             <tr>            
-                <td>582.735.465-07</td>
-                <td>Paulo Costa</td>
-                <td>HEX 0049</td>
+                <td><?php echo $row['CPF']; ?></td>
+                <td><?php echo $row['nome']; ?></td>
+                <td><?php echo ($row['placa'] != null) ? $row['placa'] : '-'; ?></td>
                 <td><a class="opt dropdown-trigger" data-target='options' href="#options"><i class="material-icons">more_horiz</i></a></td>
             </tr>
-            <tr>            
-                <td>582.735.465-07</td>
-                <td>Paulo Costa</td>
-                <td>HEX 0049</td>
-                <td><a class="opt dropdown-trigger" data-target='options' href="#options"><i class="material-icons">more_horiz</i></a></td>
-            </tr>
-            <tr>            
-                <td>582.735.465-07</td>
-                <td>Paulo Costa</td>
-                <td>HEX 0049</td>
-                <td><a class="opt dropdown-trigger" data-target='options' href="#options"><i class="material-icons">more_horiz</i></a></td>
-            </tr>
+            <?php endwhile; ?>
         <?php break; endswitch; ?>
     </tbody>
 </table>
-
 
 <!-- Dropdown -->
 <ul id='options' class='dropdown-content'>

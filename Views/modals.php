@@ -1,79 +1,124 @@
-<!-- TODO: modals type (Rotas | Carros | Motoristas) -->
-
 <!-- ADD -->
-<div id="add" class="modal modal-fixed-footer">
+<?php
+    $type = ['add', 'edit'];
+    $title = ['Adicionar', 'Editar'];
+    $color = ['', 'orange darken-1'];
+    for ($i = 0; $i <= 1; $i++) :
+?>
+<div id="<?php echo $type[$i]; ?>" class="modal modal-fixed-footer">
     <div class="modal-content">
-        <h4>Adicionar Motorista</h4>
+        <h4><?php echo "$title[$i] $tabela"; ?></h4>
         <form>
-            <div class="row">
-                <div class="input-field col s12">
-                    <i class="material-icons prefix">person</i>
-                    <input id="icon_prefix" type="text" class="validate" placeholder="Nome">
+            <?php switch($tab): case 0: ?>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">map</i>
+                        <input name="destino" type="text" class="validate">
+                        <label>Destino</label>
+                    </div>
+                    <!-- TODO: only 1 SQL request -->
+                    <?php $result = $MySQL->query('SELECT M.CPF, M.nome, C.placa from carro C Join motorista M Join motorista_carro MC on (MC.CPF_motorista = M.CPF AND MC.placa_carro = C.placa) ORDER BY M.nome');  ?>
+                    <div class="input-field col s6">
+                        <i class="material-icons prefix">person</i>
+                        <select name="motorista">
+                            <option value="" selected>-</option>
+                            <?php while($row = $result->fetch_assoc()) : ?>
+                                <option value="<?php echo $row['CPF']; ?>"><?php echo $row['nome']; ?></option>
+                            <?php endwhile; ?>
+                        </select>
+                        <label>Motorista</label>
+                    </div>
+                    <?php $result = $MySQL->query('SELECT M.CPF, M.nome, C.placa from carro C Join motorista M Join motorista_carro MC on (MC.CPF_motorista = M.CPF AND MC.placa_carro = C.placa) ORDER BY M.nome');  ?>
+                    <div class="input-field col s6">
+                        <i class="material-icons prefix">directions_car</i>
+                        <select name="carro">
+                            <option value="" selected>-</option>
+                            <?php while($row = $result->fetch_assoc()) : ?>
+                                <option value="<?php echo $row['placa']; ?>"><?php echo $row['placa']; ?></option>
+                            <?php endwhile; ?>
+                        </select>
+                        <label>Carro</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <i class="material-icons prefix">format_list_numbered</i>
+                        <input name="num_pecas" type="number" class="validate">
+                        <label>Nº de Peças</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <i class="material-icons prefix">format_list_numbered</i>
+                        <input name="num_pessoas" type="number" class="validate">
+                        <label>Nº de Pessoas</label>
+                    </div>
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">av_timer</i>
+                        <input name="tempo_estimado" type="text" class="validate">
+                        <label>Tempo Estimado</label>
+                    </div>
                 </div>
-                <div class="input-field col s6">
-                    <i class="material-icons prefix">confirmation_number</i>
-                    <input id="icon_prefix" type="number" class="validate" placeholder="CPF">
+            <?php break; case 1: ?>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">dvr</i>
+                        <input name="placa" type="text" class="validate">
+                        <label>Placa</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <i class="material-icons prefix">directions_car</i>
+                        <input name="modelo" type="text" class="validate">
+                        <label>Modelo</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <i class="material-icons prefix">person</i>
+                        <select name="motorista">
+                            <option value="" selected>-</option>
+                            <?php $result = $MySQL->query('SELECT CPF, nome from motorista'); ?>
+                            <?php while($row = $result->fetch_assoc()) : ?>
+                                <option value="<?php echo $row['CPF']; ?>"><?php echo $row['nome']; ?></option>
+                            <?php endwhile; ?>
+                        </select>
+                        <label>Atribuir ao motorista</label>
+                    </div>
                 </div>
-                <div class="input-field col s6">
-                    <i class="material-icons prefix">directions_car</i>
-                    <select>
-                      <option value="" selected>Nenhum</option>
-                      <option value="1">Option 1</option>
-                      <option value="2">Option 2</option>
-                      <option value="3">Option 3</option>
-                    </select>
-                    <label>Atribuir ao carro</label>
+            <?php break; case 2: ?>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">person</i>
+                        <input name="nome" type="text" class="validate" data-length="30" max="30" required>
+                        <label>Nome</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <i class="material-icons prefix">confirmation_number</i>
+                        <input name="CPF" type="text" class="validate" data-length="15" max="15" required>
+                        <label>CPF</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <i class="material-icons prefix">directions_car</i>
+                        <select name="carro">
+                            <option value="">-</option>
+                            <?php $result = $MySQL->query('SELECT placa from carro'); ?>
+                            <?php while($row = $result->fetch_assoc()) : ?>
+                                <option value="<?php echo $row['placa']; ?>"><?php echo $row['placa']; ?></option>
+                            <?php endwhile; ?>
+                        </select>
+                        <label>Atribuir ao carro</label>
+                    </div>
                 </div>
-            </div>
+            <?php break; endswitch; ?>
         </form>
     </div>
     <div class="modal-footer">
         <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat left">Cancelar</a>
-        <button class="modal-action modal-close btn waves-effect waves-light" type="submit" name="action">Adicionar
-            <i class="material-icons right">add</i>
+        <button class="modal-action modal-close btn waves-effect waves-light <?php echo $color[$i]; ?>" type="submit"><?php echo $title[$i]; ?>
+            <i class="material-icons right"><?php echo $type[$i]; ?></i>
         </button>
     </div>
 </div>
-
-<!-- EDIT -->
-<div id="edit" class="modal modal-fixed-footer">
-    <div class="modal-content">
-        <h4>Editar Motorista</h4>
-        <form>
-            <div class="row">
-                <div class="input-field col s12">
-                    <i class="material-icons prefix">person</i>
-                    <input id="icon_prefix" type="text" class="validate" placeholder="Nome">
-                </div>
-                <div class="input-field col s6">
-                    <i class="material-icons prefix">confirmation_number</i>
-                    <input id="icon_prefix" type="number" class="validate" placeholder="CPF">
-                </div>
-                <div class="input-field col s6">
-                    <i class="material-icons prefix">directions_car</i>
-                    <select>
-                      <option value="" selected>Nenhum</option>
-                      <option value="1">Option 1</option>
-                      <option value="2">Option 2</option>
-                      <option value="3">Option 3</option>
-                    </select>
-                    <label>Atribuir ao carro</label>
-                </div>
-            </div>
-        </form>
-    </div>
-    <div class="modal-footer">
-        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat left">Cancelar</a>
-        <button class="modal-action modal-close btn waves-effect waves-light orange darken-1" type="submit" name="action">Editar
-            <i class="material-icons right">edit</i>
-        </button>
-    </div>
-</div>
+<?php endfor; //orange darken-1 ?>
 
 <!-- DELETE -->
 <div id="delete" class="modal bottom-sheet">
     <div class="modal-content">
-        <p>Tem certeza que deseja <span>deletar</span> esse motorista?</p>
+        <p>Tem certeza que deseja <span>deletar</span> esse <?php echo $tabela; ?>?</p>
     </div>
     <div class="modal-footer">
         <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat left">Cancelar</a>
@@ -82,3 +127,5 @@
         </button>
     </div>
 </div>
+
+<script>$('.modal').modal(); $('.timepicker').timepicker({twelvehour: false}); $('input[data-length]').characterCounter(); M.updateTextFields();</script>

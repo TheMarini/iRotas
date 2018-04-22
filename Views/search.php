@@ -45,7 +45,11 @@
                             <i class="material-icons prefix">format_list_numbered</i>
                             <input id="icon_prefix" type="number" class="validate" placeholder="Nº de Pessoas">
                         </div>
-                        
+                        <div class="input-field col s12">
+                            <i class="material-icons prefix">av_timer</i>
+                            <input id="icon_prefix" type="text" class="timepicker">
+                            <label>Tempo Estimado</label>
+                        </div>
                     <!-- Carros -->
                     <?php break; case 1: ?>
                         <div class="input-field col s6">
@@ -97,4 +101,4 @@
     </li>
 </ul>
 
-<script>$('.collapsible').collapsible(); $('select').formSelect();</script>
+<script>$('.collapsible').collapsible(); $('select').formSelect(); $('.timepicker').timepicker({twelvehour: false}); M.updateTextFields();</script>

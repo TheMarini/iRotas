@@ -3,7 +3,9 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>TCS</title>
+    <title>TCS - iRotas</title>
+
+    <link rel="icon" href="./Views/assets/img/icon.png">
 
     <!-- ViewPort -->
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -45,9 +47,6 @@
             <i class="large material-icons">add</i>
         </a>
     </div>
-
-    <!-- Modals -->
-    <?php include('modals.php'); ?>
 </body>
 
 </html>
