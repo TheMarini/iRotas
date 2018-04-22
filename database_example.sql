@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: 21-Abr-2018 às 22:57
+-- Generation Time: 22-Abr-2018 às 03:04
 -- Versão do servidor: 5.6.34-log
 -- PHP Version: 7.1.5
 
@@ -38,7 +38,6 @@ CREATE TABLE `carro` (
 --
 
 INSERT INTO `carro` (`placa`, `modelo`) VALUES
-('783-UFA', 'Modelo de Carro'),
 ('ABC-1234', 'Honda Civic'),
 ('HJS-9289', 'Corsa'),
 ('IUS-1923', 'Philton RED'),
@@ -63,8 +62,10 @@ CREATE TABLE `destino` (
 --
 
 INSERT INTO `destino` (`UUID`, `nome`, `num_pecas`, `num_pessoas`, `tempo_estimado`) VALUES
-('25769c6c-d34d-4bfe-ba98-e0ee856f3e7a', 'Pátio Savassi', 12, 3, '00:23:00'),
-('c4a760a8-dbcf-5254-a0d9-6a4474bd1b62', 'Praça da Liberdade', 9, 1, '00:17:00');
+('25769c6c-d34d-4bfe-ba98-e0ee856f3e7a', 'Patio Savassi', 12, 3, '00:23:00'),
+('60f0269a-249e-422c-ae9a-94ec68be89ed', 'Pampulha', 20, 2, '01:23:45'),
+('c4a760a8-dbcf-5254-a0d9-6a4474bd1b62', 'Praca da Liberdade', 9, 1, '00:17:00'),
+('f2958fbb-669a-42d6-9235-1b42a42924d9', 'BH Shopping', 15, 3, '01:23:34');
 
 -- --------------------------------------------------------
 
@@ -104,8 +105,8 @@ CREATE TABLE `motorista_carro` (
 --
 
 INSERT INTO `motorista_carro` (`CPF_motorista`, `placa_carro`, `destino`) VALUES
-('529.182.291-90', 'KLI-2891', NULL),
 ('452.073.163-84', 'ABC-1234', '25769c6c-d34d-4bfe-ba98-e0ee856f3e7a'),
+('529.182.291-90', 'KLI-2891', '60f0269a-249e-422c-ae9a-94ec68be89ed'),
 ('587.918.982-74', 'IUS-1923', 'c4a760a8-dbcf-5254-a0d9-6a4474bd1b62');
 
 --
