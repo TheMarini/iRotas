@@ -34,6 +34,7 @@
         <?php switch($tab): case 0: ?>
             <?php while($row = $result->fetch_assoc()) : ?>
                 <tr>
+                    <td hidden><?php echo $row['UUID']; ?></td>
                     <td><?php echo $row['destino']; ?></td>
                     <td><?php echo ($row['motorista'] != null) ? $row['motorista'] : '-'; ?></td>
                     <td><?php echo ($row['placa'] != null) ? $row['placa'] : '-';?></td>
@@ -69,7 +70,6 @@
         <?php break; endswitch; ?>
     </tbody>
 </table>
-
 
 <!-- Dropdown -->
 <ul id='options' class='dropdown-content'>

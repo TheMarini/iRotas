@@ -65,7 +65,7 @@ $(function () {
         //Switch parameters
         switch(tab){
             case 0:
-                par = ['destino', 'motorista', 'carro','num_pecas', 'num_pessoas', 'tempo_estimado'];
+                par = ['UUID', 'placa', 'motorista', 'carro','num_pecas', 'num_pessoas', 'tempo_estimado'];
                 break;
             case 1:
                 par = ['placa', 'modelo', 'motorista'];
@@ -79,14 +79,15 @@ $(function () {
         //TODO: organize | for/while...
         switch (modal) {
             case 'add':
-                data[par[0]] = $('#' + modal + ' input[name="' + par[0] + '"]').val();
                 if(tab == 0){
-                    data[par[1]] = $('#' + modal + ' select[name="'+ par[1] +'"]').val();
+                    data[par[1]] = $('#' + modal + ' input[name="' + par[0] + '"]').val();
                     data[par[2]] = $('#' + modal + ' select[name="'+ par[2] +'"]').val();
-                    data[par[3]] = $('#' + modal + ' input[name="' + par[3] + '"]').val();
+                    data[par[3]] = $('#' + modal + ' select[name="'+ par[3] +'"]').val();
                     data[par[4]] = $('#' + modal + ' input[name="' + par[4] + '"]').val();
                     data[par[5]] = $('#' + modal + ' input[name="' + par[5] + '"]').val();
+                    data[par[6]] = $('#' + modal + ' input[name="' + par[6] + '"]').val();
                 }else{  //Others has the same structure
+                    data[par[0]] = $('#' + modal + ' input[name="' + par[0] + '"]').val();
                     data[par[1]] = $('#' + modal + ' input[name="' + par[1] + '"]').val();
                     data[par[2]] = $('#' + modal + ' select[name="'+ par[2] +'"]').val();
                 }
@@ -142,10 +143,10 @@ $(function () {
     $('body').on('click', '.modal-trigger[href="#edit"]', function () {
         switch(tab){
             case 0:
-                $('#edit.modal input[name="destino"]').val(tabela(0));
-                $('#edit.modal input[name="num_pecas"]').val(tabela(3));
-                $('#edit.modal input[name="num_pessoas"]').val(tabela(4));
-                $('#edit.modal input[name="tempo_estimado"]').val(tabela(5));
+                $('#edit.modal input[name="destino"]').val(tabela(1));
+                $('#edit.modal input[name="num_pecas"]').val(tabela(4));
+                $('#edit.modal input[name="num_pessoas"]').val(tabela(5));
+                $('#edit.modal input[name="tempo_estimado"]').val(tabela(6));
                 break;
 
             case 1:
