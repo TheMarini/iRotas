@@ -35,8 +35,8 @@
             <?php while($row = $result->fetch_assoc()) : ?>
                 <tr>
                     <td><?php echo $row['destino']; ?></td>
-                    <td><?php echo $row['motorista']; ?></td>
-                    <td><?php echo $row['placa']; ?></td>
+                    <td><?php echo ($row['motorista'] != null) ? $row['motorista'] : '-'; ?></td>
+                    <td><?php echo ($row['placa'] != null) ? $row['placa'] : '-';?></td>
                     <td><?php echo $row['num_pecas']; ?></td>
                     <td><?php echo $row['num_pessoas']; ?></td>
                     <td><?php echo $row['tempo_estimado']; ?></td>

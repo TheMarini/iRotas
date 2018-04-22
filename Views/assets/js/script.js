@@ -48,7 +48,7 @@ $(function () {
     });
 
     //Auto Load
-    $("body > nav a[href='motoristas']")[0].click();
+    $("body > nav a[href='rotas']")[0].click();
 
     //Modals confirm button
     $('body').on('click', '.modal-footer button', function () {
@@ -65,7 +65,7 @@ $(function () {
         //Switch parameters
         switch(tab){
             case 0:
-                par = ['UUID', 'nome', 'num_pecas', 'num_pessoas', 'tempo_estimado'];
+                par = ['destino', 'motorista', 'carro','num_pecas', 'num_pessoas', 'tempo_estimado'];
                 break;
             case 1:
                 par = ['placa', 'modelo', 'motorista'];
@@ -76,11 +76,20 @@ $(function () {
         }
 
         //Custom datas
+        //TODO: organize | for/while...
         switch (modal) {
             case 'add':
                 data[par[0]] = $('#' + modal + ' input[name="' + par[0] + '"]').val();
-                data[par[1]] = $('#' + modal + ' input[name="' + par[1] + '"]').val();
-                data[par[2]] = $('#' + modal + ' select[name="'+ par[2] +'"]').val();
+                if(tab == 0){
+                    data[par[1]] = $('#' + modal + ' select[name="'+ par[1] +'"]').val();
+                    data[par[2]] = $('#' + modal + ' select[name="'+ par[2] +'"]').val();
+                    data[par[3]] = $('#' + modal + ' input[name="' + par[3] + '"]').val();
+                    data[par[4]] = $('#' + modal + ' input[name="' + par[4] + '"]').val();
+                    data[par[5]] = $('#' + modal + ' input[name="' + par[5] + '"]').val();
+                }else{  //Others has the same structure
+                    data[par[1]] = $('#' + modal + ' input[name="' + par[1] + '"]').val();
+                    data[par[2]] = $('#' + modal + ' select[name="'+ par[2] +'"]').val();
+                }
                 message = 'Adicionado';
                 break;
 

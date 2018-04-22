@@ -1,5 +1,11 @@
 <?php
-    //Requires
+    //UUI | Math
+    require 'vendor/autoload.php';
+
+    use Ramsey\Uuid\Uuid;
+    use Ramsey\Uuid\Exception\UnsatisfiedDependencyException;
+
+    //SQL
     require('SQL_config.php');
     require('SQL_filter.php');
 
@@ -11,6 +17,11 @@
         case 'add':
             switch($tab){
                 case 0:
+                    $hash = Uuid::uuid4()->toString();
+                    $command = 'INSERT INTO destino VALUES ("'.$hash.'", "'.$$method['destino'].'", '.$$method['num_pecas'].', '.$$method['num_pessoas'].', "'.$$method['tempo_estimado'].'"); ';
+                    if(!empty($$method['motorista']) && !empty($$method['carro'])){
+                        $command .= 'UPDATE motorista_carro SET destino = "'.$hash.'" WHERE CPF_motorista = "'.$$method['motorista'].'" AND placa_carro = "'.$$method['carro'].'" ';
+                    }
                     break;
                 case 1:
                     $command = 'INSERT INTO '.$tabela.' VALUES ("'.$$method['placa'].'", "'.$$method['modelo'].'"); ';
@@ -53,9 +64,11 @@
         //FIXME: delete by CPF
         case 'delete':
             switch($tab){
-                case 0: $command = 'DELETE FROM ' . $tabela . ' WHERE UUID = "' . $$method['UUID'] . '"';
+                case 0:
+                    $command = 'DELETE FROM ' . $tabela . ' WHERE UUID = "' . $$method['UUID'] . '"';
                     break;
-                case 1: $command = 'DELETE FROM ' . $tabela . ' WHERE placa = "' . $$method['placa'] . '"';
+                case 1:
+                    $command = 'DELETE FROM ' . $tabela . ' WHERE placa = "' . $$method['placa'] . '"';
                     break;
                 case 2:
                     $command = 'DELETE FROM ' . $tabela . ' WHERE CPF = "' . $$method['CPF'] . '"';

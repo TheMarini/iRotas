@@ -16,22 +16,23 @@
                         <input name="destino" type="text" class="validate">
                         <label>Destino</label>
                     </div>
+                    <!-- TODO: only 1 SQL request -->
+                    <?php $result = $MySQL->query('SELECT M.CPF, M.nome, C.placa from carro C Join motorista M Join motorista_carro MC on (MC.CPF_motorista = M.CPF AND MC.placa_carro = C.placa) ORDER BY M.nome');  ?>
                     <div class="input-field col s6">
                         <i class="material-icons prefix">person</i>
                         <select name="motorista">
                             <option value="" selected>-</option>
-                            <?php $result = $MySQL->query('SELECT CPF, nome from motorista'); ?>
                             <?php while($row = $result->fetch_assoc()) : ?>
                                 <option value="<?php echo $row['CPF']; ?>"><?php echo $row['nome']; ?></option>
                             <?php endwhile; ?>
                         </select>
                         <label>Motorista</label>
                     </div>
+                    <?php $result = $MySQL->query('SELECT M.CPF, M.nome, C.placa from carro C Join motorista M Join motorista_carro MC on (MC.CPF_motorista = M.CPF AND MC.placa_carro = C.placa) ORDER BY M.nome');  ?>
                     <div class="input-field col s6">
                         <i class="material-icons prefix">directions_car</i>
                         <select name="carro">
                             <option value="" selected>-</option>
-                            <?php $result = $MySQL->query('SELECT placa from carro'); ?>
                             <?php while($row = $result->fetch_assoc()) : ?>
                                 <option value="<?php echo $row['placa']; ?>"><?php echo $row['placa']; ?></option>
                             <?php endwhile; ?>
@@ -50,7 +51,7 @@
                     </div>
                     <div class="input-field col s12">
                         <i class="material-icons prefix">av_timer</i>
-                        <input name="tempo_estimado" type="text" class="timepicker">
+                        <input name="tempo_estimado" type="text" class="validate">
                         <label>Tempo Estimado</label>
                     </div>
                 </div>
