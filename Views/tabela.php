@@ -55,7 +55,7 @@
                 <td>-</td>
                 <td><a class="opt dropdown-trigger" data-target='options' href="#options"><i class="material-icons">more_horiz</i></a></td>
             </tr>
-            <? endwhile; ?>
+            <?php endwhile; ?>
 
         <!-- Motoristas -->
         <?php break; case 2:?>
