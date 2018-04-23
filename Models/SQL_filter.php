@@ -5,10 +5,10 @@
     //Set table
     switch($tab){
         case 0:
-            $tabela = 'destino';
+            $tabela = 'rota';
             $select = '
-            SELECT D.UUID, D.nome as "destino", M.nome as "motorista", M.CPF, C.placa, D.num_pecas, D.num_pessoas, D.tempo_estimado FROM destino D
-                LEFT OUTER Join motorista_carro MC on MC.destino = D.UUID
+            SELECT R.UUID, R.origem, R.destino, M.nome as "motorista", M.CPF, C.placa, R.num_pecas, R.num_pessoas, R.tempo_estimado FROM rota R
+                LEFT OUTER Join motorista_carro MC on MC.rota = R.UUID
                 LEFT OUTER Join motorista M on M.CPF = MC.CPF_motorista
                 LEFT OUTER Join carro C on C.placa = MC.placa_carro ';
             break;
