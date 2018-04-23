@@ -50,7 +50,7 @@ $(function () {
     });
 
     //Auto Load
-    $("body > nav a[href='motoristas']")[0].click();
+    $("body > nav a[href='rotas']")[0].click();
 
     //Modals confirm button
     $('body').on('click', '.modal-footer button', function () {
