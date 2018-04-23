@@ -115,9 +115,6 @@ $(function () {
                 break;
         }
 
-//        alert(data['old_' + par[2]]);
-//        alert(data['new_' + par[2]]);
-
         //AJAX
         $.ajax({
             url: 'router',
@@ -125,12 +122,11 @@ $(function () {
             dataType: 'html',
             data: (data),
             success: function (data) {
-                                $('.nav-item.active a').click();
-                                M.toast({
-                                    html: message + ' com sucesso!',
-                                    classes: 'rounded'
-                                });
-                //$('main').html(data);
+                $('.nav-item.active a').click();
+                M.toast({
+                    html: message + ' com sucesso!',
+                    classes: 'rounded'
+                });
             },
             error: function (event) {
                 M.toast({
