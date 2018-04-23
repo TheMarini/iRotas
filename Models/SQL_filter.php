@@ -7,7 +7,7 @@
         case 0:
             $tabela = 'destino';
             $select = '
-            SELECT D.UUID, D.nome as "destino", M.nome as "motorista", C.placa, D.num_pecas, D.num_pessoas, D.tempo_estimado FROM destino D
+            SELECT D.UUID, D.nome as "destino", M.nome as "motorista", M.CPF, C.placa, D.num_pecas, D.num_pessoas, D.tempo_estimado FROM destino D
                 LEFT OUTER Join motorista_carro MC on MC.destino = D.UUID
                 LEFT OUTER Join motorista M on M.CPF = MC.CPF_motorista
                 LEFT OUTER Join carro C on C.placa = MC.placa_carro ';
@@ -16,7 +16,7 @@
         case 1:
             $tabela = 'carro';
             $select = '
-            SELECT C.*, M.nome FROM carro C
+            SELECT C.*, M.nome, M.CPF FROM carro C
                 Left outer Join motorista_carro MC on MC.placa_carro = C.placa Left outer
                 Join motorista M on M.CPF = MC.CPF_motorista ';
             break;
