@@ -25,8 +25,12 @@
                    
                     <!-- Rotas -->
                     <?php switch($tab): case 0: ?>
-                        <div class="input-field col s12">
-                            <i class="material-icons prefix">map</i>
+                        <div class="input-field col s6">
+                            <i class="material-icons prefix">my_location</i>
+                            <input id="icon_prefix" type="text" class="validate" placeholder="Origem">
+                        </div>
+                        <div class="input-field col s6">
+                            <i class="material-icons prefix">place</i>
                             <input id="icon_prefix" type="text" class="validate" placeholder="Destino">
                         </div>
                         <div class="input-field col s6">

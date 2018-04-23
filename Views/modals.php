@@ -11,8 +11,13 @@
         <form>
             <?php switch($tab): case 0: ?>
                 <div class="row">
-                    <div class="input-field col s12">
-                        <i class="material-icons prefix">map</i>
+                    <div class="input-field col s6">
+                        <i class="material-icons prefix">my_location</i>
+                        <input name="origem" type="text" class="validate">
+                        <label>Origem</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <i class="material-icons prefix">place</i>
                         <input name="destino" type="text" class="validate">
                         <label>Destino</label>
                     </div>
