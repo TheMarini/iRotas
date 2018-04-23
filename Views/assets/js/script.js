@@ -67,7 +67,7 @@ $(function () {
         //Switch parameters
         switch (tab) {
             case 0:
-                par = ['UUID', 'placa', 'motorista', 'carro', 'num_pecas', 'num_pessoas', 'tempo_estimado'];
+                par = ['UUID', 'origem', 'destino', 'motorista', 'carro', 'num_pecas', 'num_pessoas', 'tempo_estimado'];
                 break;
             case 1:
                 par = ['placa', 'modelo', 'motorista'];
@@ -81,12 +81,13 @@ $(function () {
         switch (modal) {
             case 'add':
                 if (tab == 0) {
-                    data[par[1]] = $('#' + modal + ' input[name="' + par[0] + '"]').val();
-                    data[par[2]] = ($('#' + modal + ' select[name="' + par[2] + '"]').val() != '-') ? $('#' + modal + ' select[name="' + par[2] + '"]').val() : '';
+                    data[par[1]] = $('#' + modal + ' input[name="' + par[1] + '"]').val();
+                    data[par[2]] = $('#' + modal + ' input[name="' + par[2] + '"]').val();
                     data[par[3]] = ($('#' + modal + ' select[name="' + par[3] + '"]').val() != '-') ? $('#' + modal + ' select[name="' + par[3] + '"]').val() : '';
-                    data[par[4]] = $('#' + modal + ' input[name="' + par[4] + '"]').val();
+                    data[par[4]] = ($('#' + modal + ' select[name="' + par[4] + '"]').val() != '-') ? $('#' + modal + ' select[name="' + par[4] + '"]').val() : '';
                     data[par[5]] = $('#' + modal + ' input[name="' + par[5] + '"]').val();
                     data[par[6]] = $('#' + modal + ' input[name="' + par[6] + '"]').val();
+                    data[par[7]] = $('#' + modal + ' input[name="' + par[7] + '"]').val();
                 } else { //Others has the same structure
                     data[par[0]] = $('#' + modal + ' input[name="' + par[0] + '"]').val();
                     data[par[1]] = $('#' + modal + ' input[name="' + par[1] + '"]').val();
@@ -96,6 +97,17 @@ $(function () {
                 break;
 
             case 'edit':
+                if (tab == 0){
+//                    data[par[1]] = $('#' + modal + ' input[name="' + par[1] + '"]').val();
+//                    data[par[2]] = $('#' + modal + ' input[name="' + par[2] + '"]').val();
+//                    data['old_' + par[3]] = tabela(3);
+//                    data['new_' + par[3]] = ($('#' + modal + ' select[name="' + par[3] + '"]').val() != '-') ? $('#' + modal + ' select[name="' + par[3] + '"]').val() : '';
+//                    data['old_' + par[4]] = tabela(5);
+//                    data['new_' + par[4]] = ($('#' + modal + ' select[name="' + par[4] + '"]').val() != '-') ? $('#' + modal + ' select[name="' + par[4] + '"]').val() : '';
+//                    data[par[5]] = $('#' + modal + ' input[name="' + par[5] + '"]').val();
+//                    data[par[6]] = $('#' + modal + ' input[name="' + par[6] + '"]').val();
+//                    data[par[7]] = $('#' + modal + ' input[name="' + par[7] + '"]').val();
+                }
                 data['old_' + par[0]] = tabela(0);
                 data['new_' + par[0]] = $('#' + modal + ' input[name="' + par[0] + '"]').val();
                 data[par[1]] = $('#' + modal + ' input[name="' + par[1] + '"]').val();
@@ -151,13 +163,14 @@ $(function () {
     $('body').on('click', '.modal-trigger[href="#edit"]', function () {
         switch (tab) {
             case 0:
-                $('#edit.modal input[name="destino"]').val(tabela(1));
-                $('#edit.modal input[name="num_pecas"]').val(tabela(5));
-                $('#edit.modal input[name="num_pessoas"]').val(tabela(6));
-                $('#edit.modal input[name="tempo_estimado"]').val(tabela(7));
+                $('#edit.modal input[name="origem"]').val(tabela(1));
+                $('#edit.modal input[name="destino"]').val(tabela(2));
+                $('#edit.modal input[name="num_pecas"]').val(tabela(6));
+                $('#edit.modal input[name="num_pessoas"]').val(tabela(7));
+                $('#edit.modal input[name="tempo_estimado"]').val(tabela(8));
 
-                $('#edit.modal select[name="motorista"]').val(tabela(2));
-                $('#edit.modal select[name="carro"]').val(tabela(4));
+                $('#edit.modal select[name="motorista"]').val(tabela(3));
+                $('#edit.modal select[name="carro"]').val(tabela(5));
 
                 //Re-initialize component
                 $('#edit.modal select[name="motorista"]').formSelect('destroy');

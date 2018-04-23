@@ -18,21 +18,21 @@
             switch($tab){
                 case 0:
                     $hash = Uuid::uuid4()->toString();
-                    $command = 'INSERT INTO destino VALUES ("'.$hash.'", "'.${$method}['destino'].'", '.${$method}['num_pecas'].', '.${$method}['num_pessoas'].', "'.${$method}['tempo_estimado'].'"); ';
+                    $command = 'INSERT INTO rota VALUES ("'.$hash.'", "'.${$method}['origem'].'", "'.${$method}['destino'].'", '.${$method}['num_pecas'].', '.${$method}['num_pessoas'].', "'.${$method}['tempo_estimado'].'"); ';
                     if(!empty(${$method}['motorista']) && !empty(${$method}['carro'])){
-                        $command .= 'UPDATE motorista_carro SET destino = "'.$hash.'" WHERE CPF_motorista = "'.${$method}['motorista'].'" AND placa_carro = "'.${$method}['carro'].'" ';
+                        $command .= 'UPDATE motorista_carro SET rota = "'.$hash.'" WHERE CPF_motorista = "'.${$method}['motorista'].'" AND placa_carro = "'.${$method}['carro'].'"; ';
                     }
                     break;
                 case 1:
                     $command = 'INSERT INTO '.$tabela.' VALUES ("'.${$method}['placa'].'", "'.${$method}['modelo'].'"); ';
                     if (!empty(${$method}['motorista'])){
-                        $command .= 'INSERT INTO motorista_carro VALUES ("'.${$method}['motorista'].'", "'.${$method}['placa'].'", NULL)';
+                        $command .= 'INSERT INTO motorista_carro VALUES ("'.${$method}['motorista'].'", "'.${$method}['placa'].'", NULL); ';
                     }
                     break;
                 case 2:
                     $command = 'INSERT INTO '.$tabela.' VALUES ("'.${$method}['CPF'].'", "'.${$method}['nome'].'"); ';
                     if (!empty(${$method}['carro'])){
-                        $command .= 'INSERT INTO motorista_carro VALUES ("'.${$method}['CPF'].'", "'.${$method}['carro'].'", NULL)';
+                        $command .= 'INSERT INTO motorista_carro VALUES ("'.${$method}['CPF'].'", "'.${$method}['carro'].'", NULL); ';
                     }
                     break;
             }
@@ -48,24 +48,24 @@
                     $command = 'UPDATE ' . $tabela . ' SET placa = "'. ${$method}['new_placa'] . '", modelo = "'.${$method}['modelo'].'" WHERE placa = "' . ${$method}['old_placa'].'"; ';
                     if (${$method}['old_motorista'] != ${$method}['new_motorista']) {
                         if (!empty(${$method}['new_motorista'])){
-                            $command .= 'INSERT INTO motorista_carro VALUES ("'.${$method}['new_motorista'].'", "'.${$method}['new_placa'].'", NULL)';
+                            $command .= 'INSERT INTO motorista_carro VALUES ("'.${$method}['new_motorista'].'", "'.${$method}['new_placa'].'", NULL); ';
                         }
                         else{
-                            $command .= 'DELETE FROM motorista_carro WHERE CPF_motorista = "'.${$method}['old_motorista'].'" AND placa_carro = "' . ${$method}['new_placa'] . '"';
+                            $command .= 'DELETE FROM motorista_carro WHERE CPF_motorista = "'.${$method}['old_motorista'].'" AND placa_carro = "' . ${$method}['new_placa'] . '"; ';
                         }
                     }
                     if (!empty(${$method}['motorista'])){
-                        $command .= 'INSERT INTO motorista_carro VALUES ("'.${$method}['motorista'].'", "'.${$method}['new_placa'].'", NULL)';
+                        $command .= 'INSERT INTO motorista_carro VALUES ("'.${$method}['motorista'].'", "'.${$method}['new_placa'].'", NULL); ';
                     }
                     break;
                 case 2:
                     $command = 'UPDATE ' . $tabela . ' SET CPF = "'. ${$method}['new_CPF'] . '", nome = "'.${$method}['nome'].'" WHERE CPF = "' . ${$method}['old_CPF'].'"; ';
                     if (${$method}['old_carro'] != ${$method}['new_carro']) {
                         if (!empty(${$method}['new_carro'])){
-                            $command .= 'INSERT INTO motorista_carro VALUES ("'.${$method}['new_CPF'].'", "'.${$method}['new_carro'].'", NULL)';
+                            $command .= 'INSERT INTO motorista_carro VALUES ("'.${$method}['new_CPF'].'", "'.${$method}['new_carro'].'", NULL); ';
                         }
                         else{
-                            $command .= 'DELETE FROM motorista_carro WHERE CPF_motorista = "'.${$method}['new_CPF'].'" AND placa_carro = "' . ${$method}['old_carro'] . '"';
+                            $command .= 'DELETE FROM motorista_carro WHERE CPF_motorista = "'.${$method}['new_CPF'].'" AND placa_carro = "' . ${$method}['old_carro'] . '"; ';
                         }
                     }
                     break;
@@ -78,13 +78,13 @@
         case 'delete':
             switch($tab){
                 case 0:
-                    $command = 'DELETE FROM ' . $tabela . ' WHERE UUID = "' . ${$method}['UUID'] . '"';
+                    $command = 'DELETE FROM ' . $tabela . ' WHERE UUID = "' . ${$method}['UUID'] . '"; ';
                     break;
                 case 1:
-                    $command = 'DELETE FROM ' . $tabela . ' WHERE placa = "' . ${$method}['placa'] . '"';
+                    $command = 'DELETE FROM ' . $tabela . ' WHERE placa = "' . ${$method}['placa'] . '"; ';
                     break;
                 case 2:
-                    $command = 'DELETE FROM ' . $tabela . ' WHERE CPF = "' . ${$method}['CPF'] . '"';
+                    $command = 'DELETE FROM ' . $tabela . ' WHERE CPF = "' . ${$method}['CPF'] . '"; ';
                     break;
             }
             $MySQL->query($command);

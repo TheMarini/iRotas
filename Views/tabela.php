@@ -4,6 +4,7 @@
         <tr>
             <!-- Rotas -->
             <?php switch($tab): case 0:?>
+                <th>Origem</th>
                 <th>Destino</th>
                 <th>Motorista</th>
                 <th>Carro</th>
@@ -35,6 +36,7 @@
             <?php while($row = $result->fetch_assoc()) : ?>
                 <tr>
                     <td hidden><?php echo $row['UUID']; ?></td>
+                    <td><?php echo $row['origem']; ?></td>
                     <td><?php echo $row['destino']; ?></td>
                     <td hidden><?php echo $row['CPF']; ?></td>
                     <td><?php echo ($row['motorista'] != null) ? $row['motorista'] : '-'; ?></td>
