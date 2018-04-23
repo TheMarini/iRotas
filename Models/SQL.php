@@ -10,7 +10,7 @@
     require('SQL_filter.php');
 
     //SELECT | INSERT | UPDATE | DELETE
-    switch ($$method['SQL_type']){
+    switch (${$method}['SQL_type']){
         case null: $result = $MySQL->query($select . $where);
             break;
 

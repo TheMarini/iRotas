@@ -10,7 +10,7 @@ $(function () {
     $('.dropdown-trigger').dropdown();
 
     //Nav items .click()
-    $('body > nav').on('click', '.nav-item', function () {
+    $('body > nav, body > .sidenav').on('click', '.nav-item', function () {
         //Prevent Default
         event.preventDefault();
 
@@ -45,6 +45,8 @@ $(function () {
                 console.log(event);
             }
         })
+
+        $('.sidenav').sidenav('close');
     });
 
     //Auto Load
