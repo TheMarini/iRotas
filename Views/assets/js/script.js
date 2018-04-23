@@ -1,6 +1,6 @@
 $(function () {
     //GLOBAL VARS
-    var tab;   //Rotas | Carros | Motoristas
+    var tab; //Rotas | Carros | Motoristas
 
     //Materialize Inits
     $('.fixed-action-btn').floatingActionButton();
@@ -50,7 +50,7 @@ $(function () {
     });
 
     //Auto Load
-    $("body > nav a[href='rotas']")[0].click();
+    $("body > nav a[href='motoristas']")[0].click();
 
     //Modals confirm button
     $('body').on('click', '.modal-footer button', function () {
@@ -65,9 +65,9 @@ $(function () {
         };
 
         //Switch parameters
-        switch(tab){
+        switch (tab) {
             case 0:
-                par = ['UUID', 'placa', 'motorista', 'carro','num_pecas', 'num_pessoas', 'tempo_estimado'];
+                par = ['UUID', 'placa', 'motorista', 'carro', 'num_pecas', 'num_pessoas', 'tempo_estimado'];
                 break;
             case 1:
                 par = ['placa', 'modelo', 'motorista'];
@@ -77,21 +77,20 @@ $(function () {
                 break;
         }
 
-        //Custom datas
         //TODO: organize | for/while...
         switch (modal) {
             case 'add':
-                if(tab == 0){
+                if (tab == 0) {
                     data[par[1]] = $('#' + modal + ' input[name="' + par[0] + '"]').val();
-                    data[par[2]] = $('#' + modal + ' select[name="'+ par[2] +'"]').val();
-                    data[par[3]] = $('#' + modal + ' select[name="'+ par[3] +'"]').val();
+                    data[par[2]] = ($('#' + modal + ' select[name="' + par[2] + '"]').val() != '-') ? $('#' + modal + ' select[name="' + par[2] + '"]').val() : '';
+                    data[par[3]] = ($('#' + modal + ' select[name="' + par[3] + '"]').val() != '-') ? $('#' + modal + ' select[name="' + par[3] + '"]').val() : '';
                     data[par[4]] = $('#' + modal + ' input[name="' + par[4] + '"]').val();
                     data[par[5]] = $('#' + modal + ' input[name="' + par[5] + '"]').val();
                     data[par[6]] = $('#' + modal + ' input[name="' + par[6] + '"]').val();
-                }else{  //Others has the same structure
+                } else { //Others has the same structure
                     data[par[0]] = $('#' + modal + ' input[name="' + par[0] + '"]').val();
                     data[par[1]] = $('#' + modal + ' input[name="' + par[1] + '"]').val();
-                    data[par[2]] = $('#' + modal + ' select[name="'+ par[2] +'"]').val();
+                    data[par[2]] = ($('#' + modal + ' select[name="' + par[2] + '"]').val() != '-') ? $('#' + modal + ' select[name="' + par[2] + '"]').val() : '';
                 }
                 message = 'Adicionado';
                 break;
@@ -100,7 +99,13 @@ $(function () {
                 data['old_' + par[0]] = tabela(0);
                 data['new_' + par[0]] = $('#' + modal + ' input[name="' + par[0] + '"]').val();
                 data[par[1]] = $('#' + modal + ' input[name="' + par[1] + '"]').val();
-                data[par[2]] = $('#' + modal + ' select[name="'+ par[2] +'"]').val();
+                if (tab == 1){
+                    data['old_' + par[2]] = tabela(3);
+                }
+                else{
+                    data['old_' + par[2]] = tabela(2);
+                }
+                data['new_' + par[2]] = ($('#' + modal + ' select[name="' + par[2] + '"]').val() != '-') ? $('#' + modal + ' select[name="' + par[2] + '"]').val() : '';
                 message = 'Editado';
                 break;
 
@@ -110,6 +115,9 @@ $(function () {
                 break;
         }
 
+//        alert(data['old_' + par[2]]);
+//        alert(data['new_' + par[2]]);
+
         //AJAX
         $.ajax({
             url: 'router',
@@ -117,12 +125,17 @@ $(function () {
             dataType: 'html',
             data: (data),
             success: function (data) {
-                $('.nav-item.active a').click();
-                M.toast({html: message + ' com sucesso!', classes: 'rounded'});
-
+                                $('.nav-item.active a').click();
+                                M.toast({
+                                    html: message + ' com sucesso!',
+                                    classes: 'rounded'
+                                });
+                //$('main').html(data);
             },
             error: function (event) {
-                M.toast({html: 'Algo deu errado :('});
+                M.toast({
+                    html: 'Algo deu errado :('
+                });
             }
         })
     });
@@ -134,29 +147,48 @@ $(function () {
     });
 
     //Get colum data
-    function tabela(col){
+    function tabela(col) {
         return $(current_row).children('td').eq(col).text();
     }
 
     //Edit modal default valors on open
     $('body').on('click', '.modal-trigger[href="#edit"]', function () {
-        switch(tab){
+        switch (tab) {
             case 0:
                 $('#edit.modal input[name="destino"]').val(tabela(1));
-                $('#edit.modal input[name="num_pecas"]').val(tabela(4));
-                $('#edit.modal input[name="num_pessoas"]').val(tabela(5));
-                $('#edit.modal input[name="tempo_estimado"]').val(tabela(6));
+                $('#edit.modal input[name="num_pecas"]').val(tabela(5));
+                $('#edit.modal input[name="num_pessoas"]').val(tabela(6));
+                $('#edit.modal input[name="tempo_estimado"]').val(tabela(7));
+
+                $('#edit.modal select[name="motorista"]').val(tabela(2));
+                $('#edit.modal select[name="carro"]').val(tabela(4));
+
+                //Re-initialize component
+                $('#edit.modal select[name="motorista"]').formSelect('destroy');
+                $('#edit.modal select[name="motorista"]').formSelect();
+
+                $('#edit.modal select[name="carro"]').formSelect('destroy');
+                $('#edit.modal select[name="carro"]').formSelect();
                 break;
 
             case 1:
                 $('#edit.modal input[name="placa"]').val(tabela(0));
                 $('#edit.modal input[name="modelo"]').val(tabela(1));
+                $('#edit.modal select[name="motorista"]').val(tabela(3));
+
+                //Re-initialize component
+                $('#edit.modal select[name="motorista"]').formSelect('destroy');
+                $('#edit.modal select[name="motorista"]').formSelect();
                 break;
 
             case 2:
                 $('#edit.modal input[name="CPF"]').val(tabela(0));
                 $('#edit.modal input[name="nome"]').val(tabela(1));
                 $('#edit.modal select[name="carro"]').val(tabela(2));
+
+                //Re-initialize component
+                $('#edit.modal select[name="carro"]').formSelect('destroy');
+                $('#edit.modal select[name="carro"]').formSelect();
                 break;
         }
     });
