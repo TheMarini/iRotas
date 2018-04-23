@@ -3,7 +3,7 @@
     $method = '_' . $_SERVER['REQUEST_METHOD'];
 
     //Get current tab
-    $tab = $$method['tab'];
+    $tab = ${$method}['tab'];
 
     include('Models/SQL.php');
 
