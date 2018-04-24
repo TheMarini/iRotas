@@ -50,45 +50,46 @@ input[type="submit"] {
     justify-content: center
 }
 
-/*----------NAV------------*/
-main{
+/*----------MAIN------------*/
+
+main {
     box-sizing: border-box;
     padding: 20px 0;
 }
 
-.brand-logo{
+.brand-logo {
     margin-left: 12px
 }
 
-table{
+table {
     background-color: white;
     padding: 30px;
     border-radius: 5px
 }
 
-.search{
+.search {
     box-shadow: none !important;
 }
 
-.opt{
+.opt {
     opacity: 0;
-    transition: 0.4s
+    transition: 0.3s
 }
 
-tr:hover .opt{
+tr:hover .opt {
     opacity: 1
 }
 
-.modal-content h4{
+.modal-content h4 {
     text-transform: capitalize;
 }
 
-.modal#delete .modal-content p{
+.modal#delete .modal-content p {
     font-size: 1.5rem;
     text-align: center
 }
 
-.modal#delete .modal-content p span{
+.modal#delete .modal-content p span {
     background-color: indianred;
     color: white;
     padding: 4px;
@@ -96,7 +97,22 @@ tr:hover .opt{
     animation: twink 1s infinite alternate;
 }
 
+
+/*----------MEDIAS------------*/
+
+@media (max-width: 1000px) {
+    .opt {
+        opacity: 1;
+    }
+}
+
+/*----------KEYFRAMES------------*/
+
 @keyframes twink {
-    0% {opacity: 0.4}
-    100% {opacity: 1}
+    0% {
+        opacity: 0.4
+    }
+    100% {
+        opacity: 1
+    }
 }

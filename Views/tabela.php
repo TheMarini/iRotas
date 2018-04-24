@@ -1,5 +1,5 @@
 <!-- TODO: Only one switch -->
-<table class="highlight centered z-depth-1">
+<table class="highlight centered z-depth-1 responsive-table">
     <thead>
         <tr>
             <!-- Rotas -->
@@ -35,10 +35,10 @@
         <?php switch($tab): case 0: ?>
             <?php while($row = $result->fetch_assoc()) : ?>
                 <tr>
-                    <td hidden><?php echo $row['UUID']; ?></td>
+                    <td hidden class="hide"><?php echo $row['UUID']; ?></td>
                     <td><?php echo $row['origem']; ?></td>
                     <td><?php echo $row['destino']; ?></td>
-                    <td hidden><?php echo $row['CPF']; ?></td>
+                    <td hidden class="hide"><?php echo $row['CPF']; ?></td>
                     <td><?php echo ($row['motorista'] != null) ? $row['motorista'] : '-'; ?></td>
                     <td><?php echo ($row['placa'] != null) ? $row['placa'] : '-';?></td>
                     <td><?php echo $row['num_pecas']; ?></td>
@@ -55,7 +55,7 @@
                 <td><?php echo $row['placa']; ?></td>
                 <td><?php echo $row['modelo']; ?></td>
                 <td><?php echo ($row['nome'] != null) ? $row['nome'] : '-'; ?></td>
-                <td hidden><?php echo $row['CPF']; ?></td>
+                <td hidden class="hide"><?php echo $row['CPF']; ?></td>
                 <td>-</td>
                 <td><a class="opt dropdown-trigger" data-target='options' href="#options"><i class="material-icons">more_horiz</i></a></td>
             </tr>
