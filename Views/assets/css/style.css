@@ -97,6 +97,22 @@ tr:hover .opt {
     animation: twink 1s infinite alternate;
 }
 
+#map {
+    width: 100%;
+    height: 450px;
+}
+
+.car-info .placa{
+    font-size: 1.8rem
+}
+
+.car-info .modelo, .car-info .motorista {
+    font-weight: bold
+}
+
+.car-info .modelo span, .car-info .motorista span{
+    font-weight: 300
+}
 
 /*----------MEDIAS------------*/
 
