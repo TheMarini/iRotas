@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 24-Abr-2018 às 01:27
+-- Generation Time: 25-Abr-2018 às 03:24
 -- Versão do servidor: 10.1.13-MariaDB
 -- PHP Version: 5.6.23
 
@@ -28,18 +28,21 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `carro` (
   `placa` varchar(10) NOT NULL,
-  `modelo` varchar(30) DEFAULT NULL
+  `modelo` varchar(30) DEFAULT NULL,
+  `latitude` decimal(10,8) DEFAULT NULL,
+  `longitude` decimal(11,8) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `carro`
 --
 
-INSERT INTO `carro` (`placa`, `modelo`) VALUES
-('ABC-1234', 'Honda Civic'),
-('HJS-9289', 'Corsa'),
-('IUS-1923', 'Philton RED'),
-('KLI-2891', 'BMW-C20');
+INSERT INTO `carro` (`placa`, `modelo`, `latitude`, `longitude`) VALUES
+('ABC-1234', 'Honda Civic', '-19.96803070', '-43.95636730'),
+('GPS-1234', 'Uno 98', '-19.94094400', '-43.93618070'),
+('HJS-9289', 'Corsa Wind 98', '-19.93230320', '-43.94046880'),
+('IUS-1923', 'Philton RED', '-19.93192560', '-43.95300060'),
+('KLI-2891', 'BMW-C20', NULL, NULL);
 
 -- --------------------------------------------------------
 
