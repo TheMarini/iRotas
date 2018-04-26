@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 24-Abr-2018 às 01:26
+-- Generation Time: 25-Abr-2018 às 03:24
 -- Versão do servidor: 10.1.13-MariaDB
 -- PHP Version: 5.6.23
 
@@ -28,7 +28,9 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `carro` (
   `placa` varchar(10) NOT NULL,
-  `modelo` varchar(30) DEFAULT NULL
+  `modelo` varchar(30) DEFAULT NULL,
+  `latitude` decimal(10,8) DEFAULT NULL,
+  `longitude` decimal(11,8) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------

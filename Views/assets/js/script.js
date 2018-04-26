@@ -1,7 +1,58 @@
 $(function () {
-    //GLOBAL VARS
-    var tab; //Rotas | Carros | Motoristas
+    /* --- GLOBAL VARS --- */
+    var tab, map; //Rotas | Carros | Motoristas //Google Maps
 
+    /* --- FUNCTIONS --- */
+    //Get colum data
+    function tabela(col) {
+        return $(current_row).children('td').eq(col).text();
+    }
+
+    //MyMap
+    function MyMap() {
+        //New Map
+        map = new GMaps({
+            el: "#map",
+            lat: -19.9177514,
+            lng: -43.9444792,
+            zoom: 12
+        });
+
+        //AJAX
+        $.ajax({
+            url: 'maps',
+            type: "GET",
+            dataType: 'json',
+            data: ({
+                tab: tab,
+                SQL_type: null
+            }),
+            success: function (data) {
+                for (i = 0; i <= data['placa'].length; i++) {
+                    if (data['lat'][i] != null && data['lng'][i]) {
+                        var content = '<div class="car-info"><p class="placa">' + data['placa'][i] + '</p> <p class="modelo">Modelo: <span>' + data['modelo'][i] + '</span></p>';
+                        content += (data['motorista'][i] != null) ? '<p class="motorista">Motorista: <span>' + data['motorista'][i] + '</p>' : '';
+                        content += '</div>';
+                        var img = 'Views/assets/img/car-stop.png';
+                        map.addMarker({
+                            lat: data['lat'][i],
+                            lng: data['lng'][i],
+                            title: data['placa'][i],
+                            icon: img,
+                            infoWindow: {
+                                content: content
+                            }
+                        });
+                    }
+                }
+            },
+            error: function (event) {
+                console.log(event);
+            }
+        })
+    }
+
+    /* --- INITS --- */
     //Materialize Inits
     $('.fixed-action-btn').floatingActionButton();
     $('.tooltipped').tooltip();
@@ -9,6 +60,7 @@ $(function () {
     $('select').formSelect();
     $('.dropdown-trigger').dropdown();
 
+    /* --- EVENTS --- */
     //Nav items .click()
     $('body > nav, body > .sidenav').on('click', '.nav-item', function () {
         //Prevent Default
@@ -39,6 +91,9 @@ $(function () {
             success: function (data) {
                 $('main').fadeTo('fast', 0, function () {
                     $('main').html(data);
+                    if (tab == 1) {
+                        MyMap();
+                    }
                 }).fadeTo('fast', 1);
             },
             error: function (event) {
@@ -48,9 +103,6 @@ $(function () {
 
         $('.sidenav').sidenav('close');
     });
-
-    //Auto Load
-    $("body > nav a[href='rotas']")[0].click();
 
     //Modals confirm button
     $('body').on('click', '.modal-footer button', function () {
@@ -97,24 +149,12 @@ $(function () {
                 break;
 
             case 'edit':
-                if (tab == 0){
-//                    data[par[1]] = $('#' + modal + ' input[name="' + par[1] + '"]').val();
-//                    data[par[2]] = $('#' + modal + ' input[name="' + par[2] + '"]').val();
-//                    data['old_' + par[3]] = tabela(3);
-//                    data['new_' + par[3]] = ($('#' + modal + ' select[name="' + par[3] + '"]').val() != '-') ? $('#' + modal + ' select[name="' + par[3] + '"]').val() : '';
-//                    data['old_' + par[4]] = tabela(5);
-//                    data['new_' + par[4]] = ($('#' + modal + ' select[name="' + par[4] + '"]').val() != '-') ? $('#' + modal + ' select[name="' + par[4] + '"]').val() : '';
-//                    data[par[5]] = $('#' + modal + ' input[name="' + par[5] + '"]').val();
-//                    data[par[6]] = $('#' + modal + ' input[name="' + par[6] + '"]').val();
-//                    data[par[7]] = $('#' + modal + ' input[name="' + par[7] + '"]').val();
-                }
                 data['old_' + par[0]] = tabela(0);
                 data['new_' + par[0]] = $('#' + modal + ' input[name="' + par[0] + '"]').val();
                 data[par[1]] = $('#' + modal + ' input[name="' + par[1] + '"]').val();
-                if (tab == 1){
+                if (tab == 1) {
                     data['old_' + par[2]] = tabela(3);
-                }
-                else{
+                } else {
                     data['old_' + par[2]] = tabela(2);
                 }
                 data['new_' + par[2]] = ($('#' + modal + ' select[name="' + par[2] + '"]').val() != '-') ? $('#' + modal + ' select[name="' + par[2] + '"]').val() : '';
@@ -153,11 +193,6 @@ $(function () {
     $('body').on('click', '.opt', function () {
         current_row = $(this).parent().parent();
     });
-
-    //Get colum data
-    function tabela(col) {
-        return $(current_row).children('td').eq(col).text();
-    }
 
     //Edit modal default valors on open
     $('body').on('click', '.modal-trigger[href="#edit"]', function () {
@@ -201,6 +236,9 @@ $(function () {
                 break;
         }
     });
+
+    //Auto Load
+    $("body > nav a[href='carros']")[0].click();
 
     //Debug input labels
     M.updateTextFields();
