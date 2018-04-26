@@ -62,7 +62,7 @@
                 </div>
             <?php break; case 1: ?>
                 <div class="row">
-                    <div class="input-field col s12">
+                    <div class="input-field col s6">
                         <i class="material-icons prefix">dvr</i>
                         <input name="placa" type="text" class="validate">
                         <label>Placa</label>
@@ -71,17 +71,6 @@
                         <i class="material-icons prefix">directions_car</i>
                         <input name="modelo" type="text" class="validate">
                         <label>Modelo</label>
-                    </div>
-                    <div class="input-field col s6">
-                        <i class="material-icons prefix">person</i>
-                        <select name="motorista">
-                            <option value="-" selected>-</option>
-                            <?php $result = $MySQL->query('SELECT CPF, nome from motorista'); ?>
-                            <?php while($row = $result->fetch_assoc()) : ?>
-                                <option value="<?php echo $row['CPF']; ?>"><?php echo $row['nome']; ?></option>
-                            <?php endwhile; ?>
-                        </select>
-                        <label>Atribuir ao motorista</label>
                     </div>
                 </div>
             <?php break; case 2: ?>

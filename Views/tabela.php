@@ -16,7 +16,6 @@
             <?php break; case 1:?>
                 <th>Placa</th>
                 <th>Modelo</th>
-                <th>Motorista Associado</th>
                 <th>Status</th>
                 
             <!-- Motoristas -->
@@ -54,8 +53,6 @@
             <tr>
                 <td><?php echo $row['placa']; ?></td>
                 <td><?php echo $row['modelo']; ?></td>
-                <td><?php echo ($row['nome'] != null) ? $row['nome'] : '-'; ?></td>
-                <td hidden class="hide"><?php echo $row['CPF']; ?></td>
                 <td>-</td>
                 <td><a class="opt dropdown-trigger" data-target='options' href="#options"><i class="material-icons">more_horiz</i></a></td>
             </tr>
