@@ -1,14 +1,16 @@
 <?php
-    //Auto method
-    $method = '_' . $_SERVER['REQUEST_METHOD'];
+    //SQL Connection
+    include('Models/SQL_config.php');
+    
+    //Command query
+    $command = 'SELECT C.*, M.nome, M.CPF FROM carro C
+                Left outer Join motorista_carro MC on MC.placa_carro = C.placa 
+                Left outer Join motorista M on M.CPF = MC.CPF_motorista';
 
-    //Get current tab
-    $tab = ${$method}['tab'];
+    //Apply command and get results
+    $result = $MySQL->query($command);
 
-    //SQL
-    include('Models/SQL.php');
-
-    //Data return
+    //Data AJAX return
     $data = array("placa" => array(), "modelo" => array(), "lat" => array(), "lng" => array(), "motorista" => array());
 
     while($row = $result->fetch_assoc()){
@@ -19,7 +21,7 @@
         array_push($data["motorista"],$row['nome']);
     }
 
-    //Return
+    //AJAX return
     echo json_encode($data);
 
     //Close connection

@@ -122,7 +122,7 @@ $(function () {
                 par = ['UUID', 'origem', 'destino', 'motorista', 'carro', 'num_pecas', 'num_pessoas', 'tempo_estimado'];
                 break;
             case 1:
-                par = ['placa', 'modelo', 'motorista'];
+                par = ['placa', 'modelo'];
                 break;
             case 2:
                 par = ['CPF', 'nome', 'carro'];
@@ -132,6 +132,7 @@ $(function () {
         //TODO: organize | for/while...
         switch (modal) {
             case 'add':
+                //Rotas
                 if (tab == 0) {
                     data[par[1]] = $('#' + modal + ' input[name="' + par[1] + '"]').val();
                     data[par[2]] = $('#' + modal + ' input[name="' + par[2] + '"]').val();
@@ -140,37 +141,41 @@ $(function () {
                     data[par[5]] = $('#' + modal + ' input[name="' + par[5] + '"]').val();
                     data[par[6]] = $('#' + modal + ' input[name="' + par[6] + '"]').val();
                     data[par[7]] = $('#' + modal + ' input[name="' + par[7] + '"]').val();
-                } else { //Others has the same structure
+                } else {
+                    //Carros | Motoristas
                     data[par[0]] = $('#' + modal + ' input[name="' + par[0] + '"]').val();
                     data[par[1]] = $('#' + modal + ' input[name="' + par[1] + '"]').val();
-                    data[par[2]] = ($('#' + modal + ' select[name="' + par[2] + '"]').val() != '-') ? $('#' + modal + ' select[name="' + par[2] + '"]').val() : '';
+                    //Motoristas
+                    if (tab == 2) {
+                        data[par[2]] = ($('#' + modal + ' select[name="' + par[2] + '"]').val() != '-') ? $('#' + modal + ' select[name="' + par[2] + '"]').val() : '';
+                    }
                 }
                 message = 'Adicionado';
                 break;
 
             case 'edit':
                 if (tab == 0) {
-                     data[par[1]] = $('#' + modal + ' input[name="' + par[1] + '"]').val();
-                     data[par[2]] = $('#' + modal + ' input[name="' + par[2] + '"]').val();
-                     data['old_' + par[3]] = tabela(3);
-                     data['new_' + par[3]] = ($('#' + modal + ' select[name="' + par[3] + '"]').val() != '-') ? $('#' + modal + ' select[name="' + par[3] + '"]').val() : '';
-                     data['old_' + par[4]] = tabela(5);
-                     data['new_' + par[4]] = ($('#' + modal + ' select[name="' + par[4] + '"]').val() != '-') ? $('#' + modal + ' select[name="' + par[4] + '"]').val() : '';
-                     data[par[5]] = $('#' + modal + ' input[name="' + par[5] + '"]').val();
-                     data[par[6]] = $('#' + modal + ' input[name="' + par[6] + '"]').val();
-                     data[par[7]] = $('#' + modal + ' input[name="' + par[7] + '"]').val();
-                    
-                }
-                data['old_' + par[0]] = tabela(0);
-                data['new_' + par[0]] = $('#' + modal + ' input[name="' + par[0] + '"]').val();
-                data[par[1]] = $('#' + modal + ' input[name="' + par[1] + '"]').val();
-                if (tab == 1) {
-                    data['old_' + par[2]] = tabela(3);
+                    data[par[0]] = tabela(0);
+                    data[par[1]] = $('#' + modal + ' input[name="' + par[1] + '"]').val();
+                    data[par[2]] = $('#' + modal + ' input[name="' + par[2] + '"]').val();
+                    data['old_' + par[3]] = tabela(3);
+                    data['new_' + par[3]] = ($('#' + modal + ' select[name="' + par[3] + '"]').val() != '-') ? $('#' + modal + ' select[name="' + par[3] + '"]').val() : '';
+                    data['old_' + par[4]] = tabela(5);
+                    data['new_' + par[4]] = ($('#' + modal + ' select[name="' + par[4] + '"]').val() != '-') ? $('#' + modal + ' select[name="' + par[4] + '"]').val() : '';
+                    data[par[5]] = $('#' + modal + ' input[name="' + par[5] + '"]').val();
+                    data[par[6]] = $('#' + modal + ' input[name="' + par[6] + '"]').val();
+                    data[par[7]] = $('#' + modal + ' input[name="' + par[7] + '"]').val();
+
                 } else {
-                    data['old_' + par[2]] = tabela(2);
+                    data['old_' + par[0]] = tabela(0);
+                    data['new_' + par[0]] = $('#' + modal + ' input[name="' + par[0] + '"]').val();
+                    data[par[1]] = $('#' + modal + ' input[name="' + par[1] + '"]').val();
+                    if (tab == 2) {
+                        data['old_' + par[2]] = (tabela(2) != '-') ? tabela(2) : '';
+                        data['new_' + par[2]] = ($('#' + modal + ' select[name="' + par[2] + '"]').val() != '-') ? $('#' + modal + ' select[name="' + par[2] + '"]').val() : '';
+                    }
+                    message = 'Editado';
                 }
-                data['new_' + par[2]] = ($('#' + modal + ' select[name="' + par[2] + '"]').val() != '-') ? $('#' + modal + ' select[name="' + par[2] + '"]').val() : '';
-                message = 'Editado';
                 break;
 
             case 'delete':
@@ -186,13 +191,13 @@ $(function () {
             dataType: 'html',
             data: (data),
             success: function (data) {
-                //                $('.nav-item.active a').click();
-                //                M.toast({
-                //                    html: message + ' com sucesso!',
-                //                    classes: 'rounded'
-                //                });
+                $('.nav-item.active a').click();
+                M.toast({
+                    html: message + ' com sucesso!',
+                    classes: 'rounded'
+                });
 
-                $('main').html(data);
+                //$('main').html(data);
             },
             error: function (event) {
                 M.toast({

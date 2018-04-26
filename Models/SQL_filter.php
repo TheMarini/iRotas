@@ -16,11 +16,7 @@
 
         case 1:
             $tabela = 'carro';
-            $select = '
-            SELECT C.*, M.nome, M.CPF FROM carro C
-                Left outer Join motorista_carro MC on MC.placa_carro = C.placa 
-                Left outer Join motorista M on M.CPF = MC.CPF_motorista 
-                ORDER BY ISNULL(M.CPF) ASC';
+            $select = 'SELECT * FROM carro C';
             break;
 
         case 2:
