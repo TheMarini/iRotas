@@ -29,9 +29,9 @@
     <link rel="stylesheet" href="Views/assets/css/style.css">
 
     <!-- Scripts -->
-    <script src="http://maps.google.com/maps/api/js"></script>
-    <script src="Views/assets/js/gmaps.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://maps.google.com/maps/api/js?key=AIzaSyARnpyiMOVlSIhmzMCtoSI_2U2DG8mMxh8"></script>
+    <script src="Views/assets/js/gmaps.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
     <script src="Views/assets/js/script.js"></script>
 </head>
