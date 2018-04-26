@@ -238,7 +238,7 @@ $(function () {
     });
 
     //Auto Load
-    $("body > nav a[href='carros']")[0].click();
+    $("body > nav a[href='rotas']")[0].click();
 
     //Debug input labels
     M.updateTextFields();
