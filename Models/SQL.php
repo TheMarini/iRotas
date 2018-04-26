@@ -24,7 +24,7 @@
                     }
                     break;
                 case 1:
-                    $command = 'INSERT INTO '.$tabela.' VALUES ("'.${$method}['placa'].'", "'.${$method}['modelo'].'"); ';
+                    $command = 'INSERT INTO '.$tabela.' VALUES ("'.${$method}['placa'].'", "'.${$method}['modelo'].'", NULL, NULL); ';
                     if (!empty(${$method}['motorista'])){
                         $command .= 'INSERT INTO motorista_carro VALUES ("'.${$method}['motorista'].'", "'.${$method}['placa'].'", NULL); ';
                     }
@@ -43,6 +43,7 @@
         case 'edit':
             switch($tab){
                 case 0:
+                    $command = 'UPDATE '.$tabela.' SET origem = "'.${$method}['origem'].'", destino = "'.${$method}['destino'].'", num_pecas = '.${$method}['num_pecas'].', num_pessoas = '.${$method}['num_pessoas'].', tempo_estimado = "'.${$method}['tempo_estimado'].'" WHERE UUID = "'.${$method}['old_UUID'].'"; ';
                     break;
                 case 1:
                     $command = 'UPDATE ' . $tabela . ' SET placa = "'. ${$method}['new_placa'] . '", modelo = "'.${$method}['modelo'].'" WHERE placa = "' . ${$method}['old_placa'].'"; ';

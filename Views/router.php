@@ -8,9 +8,14 @@
     include('Models/SQL.php');
 
     if ($method == '_GET'){
-        if($tab == 0) {
-            echo '<iframe width="100%" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyARnpyiMOVlSIhmzMCtoSI_2U2DG8mMxh8
-                &q=Raja+Valley+Santa Lucia+Belo Horizonte+MG" allowfullscreen></iframe>';
+        switch($tab){
+            case 0:
+                    echo '<iframe width="100%" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyARnpyiMOVlSIhmzMCtoSI_2U2DG8mMxh8
+                    &q=Raja+Valley+Santa Lucia+Belo Horizonte+MG" allowfullscreen></iframe>';
+                break;
+            case 1:
+                    echo '<div id="map"></div>';
+                break;
         }
         if($result->num_rows > 0) {
             include('search.php');
