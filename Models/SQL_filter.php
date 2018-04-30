@@ -10,7 +10,7 @@
             SELECT R.UUID, R.origem, R.destino, M.nome as "motorista", M.CPF, C.placa, R.num_pecas, R.num_pessoas, R.tempo_estimado FROM rota R
                 LEFT OUTER Join motorista_carro MC on MC.rota = R.UUID
                 LEFT OUTER Join motorista M on M.CPF = MC.CPF_motorista
-                LEFT OUTER Join carro C on C.placa = MC.placa_carro 
+                LEFT OUTER Join carro C on C.placa = MC.placa_carro
                 ORDER BY ISNULL(C.placa) ASC, R.tempo_estimado';
             break;
 

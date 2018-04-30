@@ -1,10 +1,10 @@
 <?php
     //SQL Connection
     include('Models/SQL_config.php');
-    
+
     //Command query
     $command = 'SELECT C.*, M.nome, M.CPF FROM carro C
-                Left outer Join motorista_carro MC on MC.placa_carro = C.placa 
+                Left outer Join motorista_carro MC on MC.placa_carro = C.placa
                 Left outer Join motorista M on M.CPF = MC.CPF_motorista';
 
     //Apply command and get results
