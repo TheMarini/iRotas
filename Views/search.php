@@ -1,14 +1,14 @@
 <!-- TODO: Only one switch -->
 
-<?php 
+<?php
     switch ($tab){
-        case 0: 
+        case 0:
             $title = 'Rotas';
             break;
-        case 1: 
+        case 1:
             $title = 'Carros';
             break;
-        case 2: 
+        case 2:
             $title = 'Motoristas';
             break;
     }
@@ -22,7 +22,7 @@
         <div class="collapsible-body white">
             <form>
                 <div class="row">
-                   
+
                     <!-- Rotas -->
                     <?php switch($tab): case 0: ?>
                         <div class="input-field col s6">
@@ -78,7 +78,7 @@
                             </select>
                             <label>Status</label>
                         </div>
-                        
+
                     <!-- Motoristas -->
                     <?php break; case 2: ?>
                         <div class="input-field col s12">
