@@ -11,22 +11,22 @@ class ComposerStaticInit7f3dd22e55e7970b4bba314e432a5b3c
     );
 
     public static $prefixLengthsPsr4 = array (
-        'R' => 
+        'R' =>
         array (
             'Ramsey\\Uuid\\' => 12,
         ),
-        'M' => 
+        'M' =>
         array (
             'Moontoast\\Math\\' => 15,
         ),
     );
 
     public static $prefixDirsPsr4 = array (
-        'Ramsey\\Uuid\\' => 
+        'Ramsey\\Uuid\\' =>
         array (
             0 => __DIR__ . '/..' . '/ramsey/uuid/src',
         ),
-        'Moontoast\\Math\\' => 
+        'Moontoast\\Math\\' =>
         array (
             0 => __DIR__ . '/..' . '/moontoast/math/src/Moontoast/Math',
         ),

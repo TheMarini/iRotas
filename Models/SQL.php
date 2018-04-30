@@ -42,7 +42,7 @@
                 case 0:
                     $command = 'UPDATE '.$tabela.' SET origem = "'.${$method}['origem'].'", destino = "'.${$method}['destino'].'", num_pecas = '.${$method}['num_pecas'].', num_pessoas = '.${$method}['num_pessoas'].', tempo_estimado = "'.${$method}['tempo_estimado'].'" WHERE UUID = "'.${$method}['UUID'].'"; ';
                     break;
-                case 1:      
+                case 1:
                     $command = 'UPDATE ' . $tabela . ' SET placa = "'. ${$method}['new_placa'] . '", modelo = "'.${$method}['modelo'].'" WHERE placa = "' . ${$method}['old_placa'].'"; ';
                     break;
                 case 2:
@@ -61,7 +61,7 @@
                         }
                     }
                     break;
-            }  
+            }
             $MySQL->multi_query($command);
             //echo $command;
         break;
