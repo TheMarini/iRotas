@@ -1,7 +1,7 @@
 <?php
     define('DB_HOST', 's3lkt7lynu0uthj8.cbetxkdyhwsb.us-east-1.rds.amazonaws.com');
 
-    define('DB_NAME', 'irotas');
+    define('DB_NAME', 'guuv1rnlhw6l6x7a');
     define('DB_USER', 'tlol2vty7z359i8u');
     define('DB_PASSWORD', 'd34644f8hjjdwsz2');
 
