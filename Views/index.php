@@ -45,7 +45,7 @@
 
     <!-- Add Button -->
     <div class="fixed-action-btn">
-        <a class="btn-floating btn-large red waves-effect waves-light modal-trigger" href="#add">
+        <a class="btn-floating btn-large red waves-effect waves-light modal-trigger orange darken-1" href="#add">
             <i class="large material-icons">add</i>
         </a>
     </div>

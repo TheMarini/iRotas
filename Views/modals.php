@@ -72,6 +72,16 @@
                         <input name="modelo" type="text" class="validate">
                         <label>Modelo</label>
                     </div>
+                    <div class="input-field col s6">
+                        <i class="material-icons prefix">my_location</i>
+                        <input name="modelo" type="text" class="validate">
+                        <label>Latitude</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <i class="material-icons prefix">my_location</i>
+                        <input name="modelo" type="text" class="validate">
+                        <label>Longitude</label>
+                    </div>
                 </div>
             <?php break; case 2: ?>
                 <div class="row">

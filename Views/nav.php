@@ -1,6 +1,6 @@
-<nav class="nav">
+<nav class="nav orange lighten-2">
     <div class="nav-wrapper">
-        <a href="" class="brand-logo"><i class="material-icons large">directions</i>iRotas</a>
+        <a href="" class="brand-logo"><img src="Views/assets/img/logo.png" alt="Pick'n'Drive"></a>
         <a href="" data-target="mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
         <ul class="right hide-on-med-and-down">
             <li class="nav-item"><a href="rotas"><i class="material-icons left">map</i>Rotas</a></li>
