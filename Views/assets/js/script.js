@@ -146,7 +146,11 @@ $(function () {
                     data[par[0]] = $('#' + modal + ' input[name="' + par[0] + '"]').val();
                     data[par[1]] = $('#' + modal + ' input[name="' + par[1] + '"]').val();
                     //Motoristas
-                    if (tab == 2) {
+                    if (tab == 1) {
+                        data[par[2]] = $('#' + modal + ' input[name="' + par[2] + '"]').val();
+                        data[par[3]] = $('#' + modal + ' input[name="' + par[3] + '"]').val();
+                    }
+                    else{
                         data[par[2]] = ($('#' + modal + ' select[name="' + par[2] + '"]').val() != '-') ? $('#' + modal + ' select[name="' + par[2] + '"]').val() : '';
                     }
                 }
