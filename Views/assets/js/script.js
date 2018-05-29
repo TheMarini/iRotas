@@ -122,7 +122,7 @@ $(function () {
                 par = ['UUID', 'origem', 'destino', 'motorista', 'carro', 'num_pecas', 'num_pessoas', 'tempo_estimado'];
                 break;
             case 1:
-                par = ['placa', 'modelo'];
+                par = ['placa', 'modelo', 'latitude', 'longitude'];
                 break;
             case 2:
                 par = ['CPF', 'nome', 'carro'];
@@ -170,7 +170,11 @@ $(function () {
                     data['old_' + par[0]] = tabela(0);
                     data['new_' + par[0]] = $('#' + modal + ' input[name="' + par[0] + '"]').val();
                     data[par[1]] = $('#' + modal + ' input[name="' + par[1] + '"]').val();
-                    if (tab == 2) {
+                    if (tab == 1) {
+                        data[par[2]] = $('#' + modal + ' input[name="' + par[2] + '"]').val();
+                        data[par[3]] = $('#' + modal + ' input[name="' + par[3] + '"]').val();
+                    }
+                    else{
                         data['old_' + par[2]] = (tabela(2) != '-') ? tabela(2) : '';
                         data['new_' + par[2]] = ($('#' + modal + ' select[name="' + par[2] + '"]').val() != '-') ? $('#' + modal + ' select[name="' + par[2] + '"]').val() : '';
                     }
@@ -237,7 +241,8 @@ $(function () {
             case 1:
                 $('#edit.modal input[name="placa"]').val(tabela(0));
                 $('#edit.modal input[name="modelo"]').val(tabela(1));
-                $('#edit.modal select[name="motorista"]').val(tabela(3));
+                $('#edit.modal input[name="latitude"]').val(tabela(3));
+                $('#edit.modal input[name="longitude"]').val(tabela(4));
 
                 //Re-initialize component
                 $('#edit.modal select[name="motorista"]').formSelect('destroy');

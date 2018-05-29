@@ -54,6 +54,8 @@
                 <td><?php echo $row['placa']; ?></td>
                 <td><?php echo $row['modelo']; ?></td>
                 <td>-</td>
+                <td hidden><?php echo $row['latitude']; ?></td>
+                <td hidden><?php echo $row['longitude']; ?></td>
                 <td><a class="opt dropdown-trigger" data-target='options' href="#options"><i class="material-icons">more_horiz</i></a></td>
             </tr>
             <?php endwhile; ?>

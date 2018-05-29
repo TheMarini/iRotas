@@ -74,12 +74,12 @@
                     </div>
                     <div class="input-field col s6">
                         <i class="material-icons prefix">my_location</i>
-                        <input name="modelo" type="text" class="validate">
+                        <input name="latitude" type="text">
                         <label>Latitude</label>
                     </div>
                     <div class="input-field col s6">
                         <i class="material-icons prefix">my_location</i>
-                        <input name="modelo" type="text" class="validate">
+                        <input name="longitude" type="text">
                         <label>Longitude</label>
                     </div>
                 </div>
